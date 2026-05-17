@@ -363,6 +363,38 @@ a:hover {
   position: relative;
 }
 
+.hero-visual--phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-phone {
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.hero-phone-img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin-inline: auto;
+  border-radius: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5);
+}
+
+.hero-phone-cap {
+  margin: 16px 0 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: 260px;
+  margin-inline: auto;
+  line-height: 1.45;
+}
+
 .hero-window {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
@@ -1280,6 +1312,94 @@ footer {
 
 .legal a:hover {
   color: var(--text);
+}
+
+/* Highlights + phone mock */
+.section-tight {
+  padding-top: 12px;
+}
+
+.highlights-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+@media (max-width: 900px) {
+  .highlights-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.highlights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.highlights-list li {
+  padding: 20px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  line-height: 1.55;
+  font-size: 0.96rem;
+}
+
+.highlights-list strong {
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+.phone-showcase {
+  margin: 0;
+  padding: 28px 24px 24px;
+  background: linear-gradient(165deg, rgba(212, 175, 115, 0.1) 0%, var(--bg-card) 45%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+}
+
+.phone-caption {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.phone-frame {
+  border-radius: 36px;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5);
+  max-width: min(320px, 100%);
+  margin-inline: auto;
+  line-height: 0;
+}
+
+.phone-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.phone-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 18px 0 0;
+  text-align: center;
+  line-height: 1.45;
 }
 
 /* Reveal on scroll — simple */

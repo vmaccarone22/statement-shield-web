@@ -20,4 +20,5 @@ Write-Host ""
 Write-Host "  Ctrl+C here stops the site. This does not open your firewall." -ForegroundColor DarkGray
 Write-Host ""
 
-py -3 -m http.server $port --bind 127.0.0.1
+# serve_local.py sends Cache-Control: no-store so a normal browser refresh picks up CSS/JS edits.
+py -3 serve_local.py --port $port --bind 127.0.0.1

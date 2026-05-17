@@ -28,9 +28,11 @@ Update `index.html`, `robots.txt`, and `sitemap.xml` when you have a real domain
 
 The server only serves what is in the repo; there is no WordPress-style admin panel.
 
-## Local preview
+## Local preview & verify
 
 Use `Serve-Local.bat` or `Serve-Local.ps1` (Python on `127.0.0.1:8080`).
+
+Run `Build-Site.ps1` to verify required HTML/CSS/JS/assets exist (no compile step — static site).
 
 ## First-time push (replace placeholders)
 
