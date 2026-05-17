@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://statementshield.example/sitemap.xml

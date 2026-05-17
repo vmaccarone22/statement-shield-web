@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#060607"/>
+  <circle cx="200" cy="120" r="280" fill="rgba(212,175,115,0.12)"/>
+  <circle cx="980" cy="520" r="220" fill="rgba(142,182,155,0.08)"/>
+  <text x="80" y="340" fill="#f3f1ed" font-family="Georgia, serif" font-size="72" font-weight="500">Statement Shield</text>
+  <text x="80" y="420" fill="#96939e" font-family="system-ui,sans-serif" font-size="28">MCA underwriting intelligence</text>
+</svg>
