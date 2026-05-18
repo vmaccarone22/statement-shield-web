@@ -1546,7 +1546,7 @@ footer {
   overflow: hidden;
   border: 3px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5);
-  max-width: min(320px, 100%);
+  max-width: min(360px, 100%);
   margin-inline: auto;
   line-height: 0;
 }
@@ -1580,16 +1580,8 @@ footer {
   line-height: 1.35;
 }
 
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: min(78vh, 560px);
-  object-fit: cover;
-  object-position: top center;
-  background: #060607;
-}
-
 .mobile-screenshot-shell--landscape {
+  position: relative;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border-subtle);
@@ -1597,15 +1589,24 @@ footer {
   box-shadow:
     0 14px 36px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* Planner PNG is a small phone on a huge landscape canvas — phone-shaped frame crops dead space */
+.mobile-demo-card .mobile-screenshot-shell--landscape {
+  aspect-ratio: 10 / 18;
+  max-width: min(340px, 94vw);
+  max-height: min(82vh, 720px);
 }
 
 .mobile-screenshot--landscape {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  max-height: min(34vh, 280px);
+  height: 100%;
   object-fit: cover;
-  object-position: center top;
   background: #000;
 }
 
@@ -1715,46 +1716,6 @@ footer {
 .demo-video-shell--compact .demo-video--desktop {
   max-height: min(28vh, 240px);
   min-height: 140px;
-}
-
-.demo-video-shell--wide.is-fallback .demo-video--desktop {
-  display: none;
-}
-
-.demo-video-fallback-panel {
-  padding: 48px 28px 56px;
-  text-align: center;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: linear-gradient(180deg, #0e0e12 0%, #060607 100%);
-}
-
-.demo-video-fallback-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.demo-video-fallback-text {
-  margin: 0;
-  max-width: 520px;
-  font-size: 0.94rem;
-  line-height: 1.55;
-  color: var(--text-muted);
-}
-
-.desk-video-cap {
-  margin: 14px 0 0;
-  font-size: 0.84rem;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1.5;
 }
 
 .phone-note {
