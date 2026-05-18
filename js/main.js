@@ -85,4 +85,44 @@
       el.classList.add("is-visible");
     });
   }
+
+  function initDemoVideos() {
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll(".demo-video").forEach(function (video) {
+      if (reduced) {
+        video.removeAttribute("autoplay");
+        video.loop = false;
+      }
+      var wrap = video.closest(".demo-video-wrap, .demo-video-shell");
+      if (!wrap) return;
+
+      var phoneFb = wrap.querySelector(".demo-video-fallback");
+      var deskPanel = wrap.querySelector(".demo-video-fallback-panel");
+
+      video.addEventListener("loadeddata", function () {
+        if (wrap.classList.contains("demo-video-wrap--phone")) {
+          wrap.classList.remove("is-fallback");
+        }
+        if (
+          wrap.classList.contains("demo-video-shell--wide") ||
+          wrap.classList.contains("demo-video-shell--compact")
+        ) {
+          wrap.classList.remove("is-fallback");
+          if (deskPanel) deskPanel.setAttribute("hidden", "");
+        }
+      });
+
+      video.addEventListener("error", function () {
+        if (wrap.classList.contains("demo-video-wrap--phone")) {
+          wrap.classList.add("is-fallback");
+        }
+        if (wrap.classList.contains("demo-video-shell--wide")) {
+          wrap.classList.add("is-fallback");
+          if (deskPanel) deskPanel.removeAttribute("hidden");
+        }
+      });
+    });
+  }
+
+  initDemoVideos();
 })();
