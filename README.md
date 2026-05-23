@@ -1,48 +1,45 @@
 ﻿# Fund Pilot (marketing site)
 
-Static site deployed with [GitHub Pages](https://pages.github.com/).
+Static site — **private repo**, not published to public GitHub Pages.
 
-## Live site & deployment repo
+## Repo (private, invite-only)
 
-| | URL |
-|---|---|
-| **Live site (GitHub Pages)** | https://vmaccarone22.github.io/statement-shield-web/ |
-| **GitHub repo (push here to publish)** | https://github.com/vmaccarone22/statement-shield-web |
+https://github.com/vmaccarone22/statement-shield-web
 
-This folder is also copied in the [fundpilot-windows](https://github.com/vmaccarone22/fundpilot-windows) monorepo as `Fund-Pilot-Website/` for local dev alongside the Windows app. **Production deploys** come from `statement-shield-web` — push there after you edit files here (or sync both).
+Only people you add under **Settings → Collaborators** can see or clone this repo. There is no public live URL while Pages is disabled.
 
-## Enable / check GitHub Pages
+This folder is also in the [fundpilot-windows](https://github.com/vmaccarone22/fundpilot-windows) monorepo as `Fund-Pilot-Website/` for local dev next to the Windows app.
 
-1. Open https://github.com/vmaccarone22/statement-shield-web → **Settings → Pages**.
-2. **Build and deployment**: Source = **Deploy from a branch**.
-3. **Branch**: `main`, folder **`/ (root)`**, Save.
+## Local preview
+
+```powershell
+py -3 serve_local.py
+# or: .\Serve-Local.ps1
+```
+
+Opens at `http://127.0.0.1:8080` on your PC only.
+
+Run `Build-Site.ps1` to verify required HTML/CSS/JS/assets exist.
+
+## If you want a private live site later
+
+- **GitHub Pro** (~$4/mo): private repo + **private GitHub Pages** (only repo collaborators can view).
+- **Netlify / Vercel / Cloudflare**: password or SSO in front of the site.
+- **Custom domain** with access control on your host.
+
+Do not re-enable public GitHub Pages unless you intend for the whole internet to see the site.
 
 ## Edit the site
 
 | Where | How |
 |--------|-----|
-| This PC | Change files in this folder, commit, push to `statement-shield-web`. |
-| GitHub | Open a file in the repo → **Edit** (pencil) → commit. |
-| Cursor / VS Code | Same as local: edit, Source Control, push. |
+| This PC | Edit files, commit, push to `statement-shield-web` (requires collaborator access). |
+| Cursor | Same — Source Control → push. |
 
-The server only serves what is in the repo; there is no WordPress-style admin panel.
-
-## Local preview & verify
-
-Use `Serve-Local.bat` or `Serve-Local.ps1` (Python on `127.0.0.1:8080`).
-
-Run `Build-Site.ps1` to verify required HTML/CSS/JS/assets exist (no compile step — static site).
-
-## First-time push (new machine)
+## First-time clone (partner)
 
 ```powershell
-cd path\to\Fund-Pilot-Website
-git init
-git add .
-git commit -m "Fund Pilot marketing site"
-git branch -M main
-git remote add origin https://github.com/vmaccarone22/statement-shield-web.git
-git push -u origin main
+git clone https://github.com/vmaccarone22/statement-shield-web.git
 ```
 
-Then confirm Pages is enabled in repo settings (see above).
+They must be invited to the repo first.
