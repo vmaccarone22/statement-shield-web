@@ -1,4 +1,4 @@
-# Statement Shield — verify static site, optional cache-bust for production ZIPs/CDN.
+﻿# Fund Pilot — verify static site, optional cache-bust for production ZIPs/CDN.
 # Local preview: .\Serve-Local.ps1  (serves with no-cache headers so refresh is enough)
 #
 # Production / handoff: .\Build-Site.ps1 -Stamp  appends ?v=<unixtime> to css/styles.css + js/main.js
@@ -42,7 +42,7 @@ if ($Stamp) {
 }
 
 $n = $required.Count
-Write-Host "OK: Statement Shield static site verified ($n paths)." -ForegroundColor Green
+Write-Host "OK: Fund Pilot static site verified ($n paths)." -ForegroundColor Green
 Write-Host "Preview (no-cache): .\Serve-Local.ps1" -ForegroundColor Green
 if (-not $Stamp) {
     Write-Host "Optional stamp for deploy ZIP: .\Build-Site.ps1 -Stamp" -ForegroundColor DarkGray

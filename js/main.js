@@ -1,6 +1,6 @@
-(function () {
+﻿(function () {
   /** Replace with your live address before launch. */
-  var CONTACT_EMAIL = "hello@statementshield.example";
+  var CONTACT_EMAIL = "hello@fundpilot.example";
 
   var nav = document.getElementById("nav");
   var toggle = document.getElementById("navToggle");
@@ -46,7 +46,7 @@
       }
 
       var subject =
-        encodeURIComponent("Statement Shield demo — " + company);
+        encodeURIComponent("Fund Pilot demo — " + company);
       var body = encodeURIComponent(
         "Name: " +
           name +

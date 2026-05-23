@@ -1,4 +1,4 @@
-"""
+﻿"""
 Local static preview with anti-cache headers so refresh always pulls latest CSS/JS.
 """
 from __future__ import annotations
@@ -18,7 +18,7 @@ class NoCacheRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="Serve Statement Shield site locally (no-cache).")
+    p = argparse.ArgumentParser(description="Serve Fund Pilot site locally (no-cache).")
     p.add_argument("--port", type=int, default=8080)
     p.add_argument("--bind", default="127.0.0.1")
     args = p.parse_args()

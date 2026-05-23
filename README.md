@@ -1,28 +1,27 @@
-# Statement Shield (marketing site)
+﻿# Fund Pilot (marketing site)
 
-Static site — works with [GitHub Pages](https://pages.github.com/) (free for public repos).
+Static site deployed with [GitHub Pages](https://pages.github.com/).
 
-## Live URL
+## Live site & deployment repo
 
-After you enable Pages, the site is usually:
+| | URL |
+|---|---|
+| **Live site (GitHub Pages)** | https://vmaccarone22.github.io/statement-shield-web/ |
+| **GitHub repo (push here to publish)** | https://github.com/vmaccarone22/statement-shield-web |
 
-`https://YOUR_USERNAME.github.io/REPO_NAME/`
+This folder is also copied in the [fundpilot-windows](https://github.com/vmaccarone22/fundpilot-windows) monorepo as `Fund-Pilot-Website/` for local dev alongside the Windows app. **Production deploys** come from `statement-shield-web` — push there after you edit files here (or sync both).
 
-Update `index.html`, `robots.txt`, and `sitemap.xml` when you have a real domain (or keep the GitHub URL in `canonical` if you prefer).
+## Enable / check GitHub Pages
 
-## Enable GitHub Pages
-
-1. Push this folder to a new GitHub repository.
-2. On GitHub: **Settings → Pages**.
-3. **Build and deployment**: Source = **Deploy from a branch**.
-4. **Branch**: `main` (or `master`), folder **`/ (root)`**, Save.
-5. Wait a minute; refresh Pages — copy the published URL.
+1. Open https://github.com/vmaccarone22/statement-shield-web → **Settings → Pages**.
+2. **Build and deployment**: Source = **Deploy from a branch**.
+3. **Branch**: `main`, folder **`/ (root)`**, Save.
 
 ## Edit the site
 
 | Where | How |
 |--------|-----|
-| This PC | Change files in this folder, commit, `git push`. |
+| This PC | Change files in this folder, commit, push to `statement-shield-web`. |
 | GitHub | Open a file in the repo → **Edit** (pencil) → commit. |
 | Cursor / VS Code | Same as local: edit, Source Control, push. |
 
@@ -34,16 +33,16 @@ Use `Serve-Local.bat` or `Serve-Local.ps1` (Python on `127.0.0.1:8080`).
 
 Run `Build-Site.ps1` to verify required HTML/CSS/JS/assets exist (no compile step — static site).
 
-## First-time push (replace placeholders)
+## First-time push (new machine)
 
-```bash
-cd path/to/Statement-Shield-Website
+```powershell
+cd path\to\Fund-Pilot-Website
 git init
 git add .
-git commit -m "Initial Statement Shield site"
+git commit -m "Fund Pilot marketing site"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git remote add origin https://github.com/vmaccarone22/statement-shield-web.git
 git push -u origin main
 ```
 
-Then turn on Pages in repo settings as above.
+Then confirm Pages is enabled in repo settings (see above).

@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
-Statement Shield — marketing demo MP4s (synthetic UI matching the Windows app).
+Fund Pilot — marketing demo MP4s (synthetic UI matching the Windows app).
 
 Outputs:
   assets/demo-desktop-analyze.mp4 — Select files (4 months) → Analyzing… → big-picture summary (large type)
   assets/mobile-screenshot-calendar.png — planner mock still (1920×1088)
   assets/mobile-screenshot-notification.png — notification mock still (1920×1088)
-  Lock screen: assets/iphone-followup-notification-demo.png (replace with your own high-res device shot if needed).
+  assets/iphone-followup-notification-demo.png — portrait lock-screen composite (750×1624, matches site <img> dimensions)
 
 Requires: pip install numpy pillow imageio imageio-ffmpeg
 """
@@ -128,7 +128,7 @@ def draw_desktop_story(frame_i: int, n_frames: int) -> np.ndarray:
     d = ImageDraw.Draw(img)
     rr(d, (wx0, wy0, wx1, wy1), 16, (*CARD_BG2, 255))
     rr(d, (wx0, wy0, wx1, wy0 + 60), 12, (18, 18, 22, 255))
-    d.text((wx0 + 52, wy0 + 16), "Statement Shield — MCA Analyzer", fill=GRAY, font=tbar)
+    d.text((wx0 + 52, wy0 + 16), "Fund Pilot — MCA Analyzer", fill=GRAY, font=tbar)
     for i, col in enumerate(((201, 123, 123), ACCENT, GREEN)):
         cx = wx0 + 24 + i * 22
         cy = wy0 + 29
@@ -305,25 +305,6 @@ def draw_desktop_story(frame_i: int, n_frames: int) -> np.ndarray:
     return np.array(img.convert("RGB"))
 
 
-def draw_mobile_followup(phase: float, phone: Image.Image) -> np.ndarray:
-    arr = bg_array()
-    img = Image.fromarray(arr).convert("RGBA")
-    scale = 1.02 + 0.018 * math.sin(phase * 2 * math.pi)
-    nw, nh = int(phone.width * scale), int(phone.height * scale)
-    ph = phone.resize((nw, nh), Image.Resampling.LANCZOS)
-    x, y = (W - nw) // 2, (H - nh) // 2 + int(10 * math.sin(phase * 2 * math.pi))
-    img.paste(ph, (x, y), ph)
-    bloom = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    bd = ImageDraw.Draw(bloom)
-    bd.ellipse((W // 2 - 280, -40, W // 2 + 280, 320), fill=(*ACCENT, int(28 + 22 * math.sin(phase * 2 * math.pi))))
-    img = Image.alpha_composite(img, bloom.filter(ImageFilter.GaussianBlur(48)))
-    fb = _font(WIN_FONT_SEMI, 28)
-    sub = "Lock screen callback — Core + CRM"
-    sw = _text_w(fb, sub)
-    ImageDraw.Draw(img).text((int((W - sw) / 2), H - 52), sub, fill=GRAY, font=fb)
-    return np.array(img.convert("RGB"))
-
-
 def draw_mobile_calendar(phase: float) -> np.ndarray:
     arr = bg_array()
     img = Image.fromarray(arr).convert("RGBA")
@@ -338,7 +319,7 @@ def draw_mobile_calendar(phase: float) -> np.ndarray:
     rr(d, (mx0, my0, mx1, my1), 44, (10, 10, 12, 255))
     rr(d, (mx0 + 12, my0 + 12, mx1 - 12, my1 - 12), 36, (*CARD_BG, 255))
     ix, iy = mx0 + 34, my0 + 52
-    d.text((ix, iy), "Follow-ups — Statement Shield", fill=ACCENT, font=f12)
+    d.text((ix, iy), "Follow-ups — Fund Pilot", fill=ACCENT, font=f12)
     iy += 42
     d.text((ix, iy), "February 2026", fill=TEXT, font=f14)
     iy += 40
@@ -393,7 +374,7 @@ def draw_mobile_notification(phase: float) -> np.ndarray:
     f11 = _font(WIN_FONT_SEMI, 20)
     d.text((nx + 28, ny + 22), "CALENDAR", fill=TEXT_DIM, font=f9)
     d.text((nx + 28, ny + 44), "Callback — Summit Trucking LLC", fill=TEXT, font=f13)
-    d.text((nx + 28, ny + 82), "Today · 10:30 AM · Statement Shield", fill=ACCENT, font=f11)
+    d.text((nx + 28, ny + 82), "Today · 10:30 AM · Fund Pilot", fill=ACCENT, font=f11)
     fb = _font(WIN_FONT_SEMI, 18)
     tx = "Expanded notification — before unlock"
     d.text((int((W - _text_w(fb, tx)) / 2), ny + nh + 36), tx, fill=GRAY, font=fb)
@@ -423,6 +404,58 @@ def save_mobile_screenshots() -> None:
     Image.fromarray(notif).save(ASSETS / "mobile-screenshot-notification.png", optimize=True)
 
 
+def save_iphone_lock_demo() -> None:
+    """750×1624 marketing hero: synthetic iPhone lock screen + Fund Pilot calendar notification."""
+    pw, ph = 750, 1624
+    img = Image.new("RGB", (pw, ph))
+    px = img.load()
+    for y in range(ph):
+        t = y / max(1, ph - 1)
+        r = int(12 + t * 38)
+        g = int(14 + t * 36)
+        b = int(48 + t * 52)
+        for x in range(pw):
+            px[x, y] = (r, g, b)
+
+    d = ImageDraw.Draw(img, "RGBA")
+    status_y = 56
+
+    f_status = _font(WIN_FONT_SEMI, 17)
+    f_time = _font(WIN_FONT_SEMI, 82)
+    f_date = _font(WIN_FONT_REG, 22)
+    f_cal_lbl = _font(WIN_FONT_REG, 14)
+    f_cal_title = _font(WIN_FONT_SEMI, 20)
+    f_cal_sub = _font(WIN_FONT_SEMI, 18)
+
+    d.text((44, status_y), "9:41", fill=TEXT, font=f_status)
+    sw = _text_w(f_status, "LTE  100%")
+    d.text((pw - sw - 44, status_y), "LTE  100%", fill=TEXT, font=f_status)
+
+    time_s = "10:30"
+    tw = _text_w(f_time, time_s)
+    d.text((int((pw - tw) / 2), status_y + 140), time_s, fill=TEXT, font=f_time)
+
+    date_s = "Wednesday, February 12"
+    dw = _text_w(f_date, date_s)
+    d.text((int((pw - dw) / 2), status_y + 240), date_s, fill=TEXT_DIM, font=f_date)
+
+    nx0 = 36
+    nx_r = pw - 36
+    ny0 = status_y + 340
+    nh = 124
+    rr(d, (nx0, ny0, nx_r, ny0 + nh), 26, (36, 36, 44, 248))
+    d.text((nx0 + 22, ny0 + 18), "CALENDAR", fill=TEXT_DIM, font=f_cal_lbl)
+    d.text((nx0 + 22, ny0 + 40), "Callback — Summit Trucking LLC", fill=TEXT, font=f_cal_title)
+    d.text((nx0 + 22, ny0 + 80), "Today · 10:30 AM · Fund Pilot", fill=ACCENT, font=f_cal_sub)
+
+    hint = _font(WIN_FONT_REG, 16)
+    cap = "Synthetic lock screen — Fund Pilot · Core + CRM"
+    cw = _text_w(hint, cap)
+    d.text((int((pw - cw) / 2), ph - 72), cap, fill=TEXT_DIM, font=hint)
+
+    img.convert("RGB").save(ASSETS / "iphone-followup-notification-demo.png", optimize=True)
+
+
 def main() -> None:
     ASSETS.mkdir(parents=True, exist_ok=True)
 
@@ -437,6 +470,8 @@ def main() -> None:
 
     print("Mobile screenshots…", ASSETS / "mobile-screenshot-calendar.png", ASSETS / "mobile-screenshot-notification.png")
     save_mobile_screenshots()
+    print("iPhone hero…", ASSETS / "iphone-followup-notification-demo.png")
+    save_iphone_lock_demo()
     print("Done.")
 
 

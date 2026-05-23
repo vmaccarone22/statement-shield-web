@@ -1,7 +1,7 @@
-@echo off
+﻿@echo off
 setlocal
 cd /d "%~dp0"
-title Statement Shield - local server
+title Fund Pilot - local server
 echo.
 echo   Local preview:  http://127.0.0.1:8080
 echo   For partners, use cloudflared in another window (see Serve-Local.ps1 comments).

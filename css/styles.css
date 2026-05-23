@@ -1,4 +1,4 @@
-/* Statement Shield — premium marketing surface */
+﻿/* Fund Pilot — premium marketing surface */
 :root {
   --bg-deep: #060607;
   --bg-elevated: #0e0e12;
@@ -947,12 +947,12 @@ h2 {
 /* Pricing */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
   align-items: stretch;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1050px) {
   .pricing {
     grid-template-columns: 1fr;
   }
@@ -1013,6 +1013,14 @@ h2 {
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-muted);
+}
+
+.price-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0 0 8px;
+  max-width: 34ch;
 }
 
 .price-features {
@@ -2358,4 +2366,49 @@ footer {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Pricing context (third-party reference block) */
+.pricing-market {
+  margin-top: 48px;
+  padding: 28px 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background:
+    linear-gradient(165deg, rgba(212, 175, 115, 0.07), transparent 55%),
+    var(--bg-card);
+}
+
+.pricing-market-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  margin: 0 0 14px;
+  font-weight: 600;
+}
+
+.pricing-market-lead,
+.pricing-market p {
+  margin: 0 0 14px;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.pricing-market p:last-child {
+  margin-bottom: 0;
+  color: var(--text);
+}
+
+.pricing-market em {
+  color: var(--accent-2);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.footer-disclaimer {
+  margin-top: 12px;
+  max-width: 36rem;
+  line-height: 1.55;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }

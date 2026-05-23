@@ -1,4 +1,4 @@
-# Statement Shield — local preview (NOT exposed to the internet by itself).
+﻿# Fund Pilot — local preview (NOT exposed to the internet by itself).
 # Binds only to 127.0.0.1 so nothing off your PC can hit this port directly.
 #
 # For partners: install cloudflared (winget install Cloudflare.cloudflared), then
@@ -11,7 +11,7 @@ $port = 8080
 Set-Location $PSScriptRoot
 
 Write-Host ""
-Write-Host "  Statement Shield — local server" -ForegroundColor Cyan
+Write-Host "  Fund Pilot — local server" -ForegroundColor Cyan
 Write-Host "  http://127.0.0.1:$port  (you only — same machine)" -ForegroundColor Green
 Write-Host ""
 Write-Host "  Partners: open another terminal and run:" -ForegroundColor Yellow
