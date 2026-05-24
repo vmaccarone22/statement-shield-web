@@ -110,5 +110,39 @@
     });
   }
 
+  function initBillingToggle() {
+    var billingToggle = document.querySelector(".billing-toggle");
+    if (!billingToggle) return;
+
+    var opts = billingToggle.querySelectorAll(".billing-opt");
+
+    function applyBilling(mode) {
+      opts.forEach(function (btn) {
+        var active = btn.getAttribute("data-billing") === mode;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+
+      document.querySelectorAll(".price-value").forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + mode) || el.textContent;
+      });
+
+      document.querySelectorAll(".price-billed").forEach(function (el) {
+        el.innerHTML = el.getAttribute("data-" + mode) || el.innerHTML;
+      });
+
+      document.querySelectorAll(".price-extra").forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + mode) || el.textContent;
+      });
+    }
+
+    opts.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        applyBilling(btn.getAttribute("data-billing") || "monthly");
+      });
+    });
+  }
+
   initDemoVideos();
+  initBillingToggle();
 })();
