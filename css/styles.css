@@ -832,6 +832,21 @@ h2 {
   margin-bottom: 14px;
 }
 
+.shipped-pill {
+  color: #8eb69b;
+}
+
+.shipped-pill-inline {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8eb69b;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
 .span-5 {
   grid-column: span 5;
 }
@@ -952,8 +967,22 @@ h2 {
   align-items: stretch;
 }
 
+.pricing--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1200px) {
+  .pricing--four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1050px) {
   .pricing {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing--four {
     grid-template-columns: 1fr;
   }
 }
@@ -1892,6 +1921,13 @@ footer {
   margin-left: 0;
   font-size: 0.62rem;
   padding: 4px 11px;
+}
+
+.win-nav-pill--gold {
+  margin-left: 0;
+  background: rgba(212, 175, 115, 0.22);
+  color: var(--accent);
+  border: 1px solid rgba(212, 175, 115, 0.35);
 }
 
 .win-nav-ghost {

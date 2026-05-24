@@ -1,45 +1,39 @@
-﻿# Fund Pilot (marketing site)
+﻿# Fund Pilot marketing site
 
-Static site — **private repo**, not published to public GitHub Pages.
+Static marketing site for **Fund Pilot** — MCA analyzer, native CRM, Twilio dialer.
 
-## Repo (private, invite-only)
+**Source of truth:** `FundPilot/website/` in the private [fundpilot](https://github.com/vmaccarone22/fundpilot) monorepo.
 
-https://github.com/vmaccarone22/statement-shield-web
-
-Only people you add under **Settings → Collaborators** can see or clone this repo. There is no public live URL while Pages is disabled.
-
-This folder is also in the [fundpilot-windows](https://github.com/vmaccarone22/fundpilot-windows) monorepo as `Fund-Pilot-Website/` for local dev next to the Windows app.
+**Public deploy repo (legacy name):** [statement-shield-web](https://github.com/vmaccarone22/statement-shield-web) — sync from this folder before pushing live.
 
 ## Local preview
 
 ```powershell
+cd website
 py -3 serve_local.py
 # or: .\Serve-Local.ps1
 ```
 
-Opens at `http://127.0.0.1:8080` on your PC only.
+Opens at http://127.0.0.1:8080
 
-Run `Build-Site.ps1` to verify required HTML/CSS/JS/assets exist.
+## What’s on the site (2026-05-24)
 
-## If you want a private live site later
+- Native in-exe CRM, deal board, merchants
+- Fund Pilot Dialer (Twilio, campaigns, Ops admin)
+- Four pricing tiers: Core, Core + CRM, CRM + Dialer, Enterprise
+- SEO: meta keywords, Open Graph, Twitter cards, JSON-LD SoftwareApplication + Organization
+- FAQ entries for CRM and dialer
 
-- **GitHub Pro** (~$4/mo): private repo + **private GitHub Pages** (only repo collaborators can view).
-- **Netlify / Vercel / Cloudflare**: password or SSO in front of the site.
-- **Custom domain** with access control on your host.
+## Before public launch
 
-Do not re-enable public GitHub Pages unless you intend for the whole internet to see the site.
+1. Replace `fundpilot.example` in `index.html`, `sitemap.xml`, `robots.txt`
+2. Set contact email in `js/main.js` (`CONTACT_EMAIL`)
+3. Run `Build-Site.ps1` to verify assets
+4. Sync to `statement-shield-web` and enable GitHub Pages (or Netlify/Cloudflare)
 
-## Edit the site
-
-| Where | How |
-|--------|-----|
-| This PC | Edit files, commit, push to `statement-shield-web` (requires collaborator access). |
-| Cursor | Same — Source Control → push. |
-
-## First-time clone (partner)
+## Sync to statement-shield-web
 
 ```powershell
-git clone https://github.com/vmaccarone22/statement-shield-web.git
+# From FundPilot repo root — copy site files to a clone of statement-shield-web, then commit there
+powershell -ExecutionPolicy Bypass -File scripts\Sync-Website-To-GitHub.ps1
 ```
-
-They must be invited to the repo first.
