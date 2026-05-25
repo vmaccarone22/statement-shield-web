@@ -15,6 +15,9 @@ $required = @(
     "terms.html",
     "css/styles.css",
     "js/main.js",
+    "js/hero-3d.js",
+    "js/scene-showcase.js",
+    "js/device-3d.js",
     "assets/favicon.svg",
     "assets/social-card.svg",
     "assets/iphone-followup-notification-demo.png",
@@ -36,6 +39,7 @@ if ($Stamp) {
         $text = Get-Content -LiteralPath $p -Raw -Encoding UTF8
         $text = $text -replace 'href="css/styles\.css(\?[^"]*)?"', "href=`"css/styles.css?v=$v`""
         $text = $text -replace 'src="js/main\.js(\?[^"]*)?"', "src=`"js/main.js?v=$v`""
+        $text = $text -replace 'src="js/hero-3d\.js(\?[^"]*)?"', "src=`"js/hero-3d.js?v=$v`""
         Set-Content -LiteralPath $p -Value $text -Encoding UTF8 -NoNewline
     }
     Write-Host "Stamped asset query strings (?v=$v) in: $($htmlFiles -join ', ')" -ForegroundColor Cyan

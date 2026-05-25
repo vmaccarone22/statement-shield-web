@@ -456,23 +456,174 @@ def save_iphone_lock_demo() -> None:
     img.convert("RGB").save(ASSETS / "iphone-followup-notification-demo.png", optimize=True)
 
 
+def draw_iphone_app_crm() -> Image.Image:
+    """750×1624 in-app CRM pipeline screen for 3D phone mockups."""
+    pw, ph = 750, 1624
+    img = Image.new("RGB", (pw, ph), BG_TOP)
+    d = ImageDraw.Draw(img)
+    f10 = _font(WIN_FONT_REG, 16)
+    f12 = _font(WIN_FONT_SEMI, 18)
+    f14 = _font(WIN_FONT_SEMI, 22)
+    f18 = _font(WIN_FONT_SEMI, 28)
+    f22 = _font(WIN_FONT_SEMI, 34)
+
+    # status
+    d.text((44, 56), "9:41", fill=TEXT, font=f12)
+    sw = _text_w(f12, "5G  100%")
+    d.text((pw - sw - 44, 56), "5G  100%", fill=TEXT, font=f12)
+
+    d.text((44, 118), "Fund Pilot", fill=ACCENT, font=f14)
+    d.text((44, 152), "Pipeline", fill=TEXT, font=f22)
+
+    # search bar
+    rr(d, (44, 210, pw - 44, 268), 16, CARD_BG)
+    d.text((68, 228), "Search merchants…", fill=TEXT_DIM, font=f12)
+
+    # filter pills
+    pills = ["All deals", "Contacted", "My activity"]
+    px = 44
+    for i, p in enumerate(pills):
+        active = i == 0
+        pw_p = int(_text_w(f10, p) + 36)
+        rr(d, (px, 288, px + pw_p, 328), 999, ACCENT if active else DIM_BTN)
+        d.text((px + 18, 300), p, fill=BTN_ON_ACCENT if active else TEXT, font=f10)
+        px += pw_p + 12
+
+    deals = [
+        ("Summit Trucking LLC", "$142K/mo", "Score 7.5", "Analyze ready"),
+        ("Metro HVAC Services", "$98K/mo", "Score 8.2", "In CRM"),
+        ("Coastal Auto Repair", "$76K/mo", "Score 6.9", "Follow-up today"),
+        ("Brightline Logistics", "$210K/mo", "Score 9.1", "Dialing"),
+        ("Prime Dental Group", "$54K/mo", "Score 7.0", "Packaged"),
+    ]
+    y = 360
+    for name, dep, score, tag in deals:
+        rr(d, (36, y, pw - 36, y + 118), 20, CARD_BG, (*ACCENT, 60 if tag == "Analyze ready" else 30), 2)
+        d.text((56, y + 18), name, fill=TEXT, font=f14)
+        d.text((56, y + 52), dep, fill=TEXT_DIM, font=f12)
+        d.text((56, y + 82), score, fill=GREEN, font=f12)
+        tw = _text_w(f10, tag)
+        rr(d, (pw - 56 - tw, y + 20, pw - 56, y + 50), 8, (212, 175, 115, 40) if "Analyze" in tag else DIM_BTN)
+        d.text((pw - 48 - tw, y + 28), tag, fill=ACCENT if "Analyze" in tag else TEXT_DIM, font=f10)
+        y += 132
+
+    # bottom tab bar
+    rr(d, (0, ph - 120, pw, ph), 0, (16, 16, 20))
+    tabs = ["Home", "CRM", "Call", "More"]
+    tx = pw // 8
+    for i, tab in enumerate(tabs):
+        col = ACCENT if tab == "CRM" else TEXT_DIM
+        tw = _text_w(f10, tab)
+        d.text((tx + i * (pw // 4) - tw // 2, ph - 68), tab, fill=col, font=f10)
+
+    return img
+
+
+def draw_iphone_app_deal() -> Image.Image:
+    """750×1624 deal detail + score for secondary phone in 3D cluster."""
+    pw, ph = 750, 1624
+    img = Image.new("RGB", (pw, ph), BG_TOP)
+    d = ImageDraw.Draw(img)
+    f10 = _font(WIN_FONT_REG, 16)
+    f12 = _font(WIN_FONT_SEMI, 18)
+    f14 = _font(WIN_FONT_SEMI, 22)
+    f18 = _font(WIN_FONT_SEMI, 28)
+    f36 = _font(WIN_FONT_SEMI, 52)
+
+    d.text((44, 56), "9:41", fill=TEXT, font=f12)
+    d.text((44, 118), "← CRM", fill=ACCENT, font=f12)
+    d.text((44, 162), "Summit Trucking LLC", fill=TEXT, font=f18)
+
+    rr(d, (36, 220, pw - 36, 420), 24, CARD_BG, (*ACCENT, 90), 2)
+    d.text((56, 248), "Funding range", fill=TEXT_DIM, font=f12)
+    d.text((56, 282), "$85K — $140K", fill=ACCENT, font=f36)
+    d.text((56, 360), "Approval score  7.5 / 10", fill=GREEN, font=f14)
+
+    rr(d, (36, 448, pw - 36, 620), 20, CARD_BG)
+    d.text((56, 472), "Next step", fill=ACCENT, font=f12)
+    d.text((56, 508), "Callback today · 10:30 AM", fill=TEXT, font=f14)
+    d.text((56, 548), "Rep: Frank Romano", fill=TEXT_DIM, font=f12)
+
+    rr(d, (36, 648, pw - 36, 760), 20, (28, 24, 18))
+    d.text((56, 676), "Push reminder sent to lock screen", fill=ACCENT, font=f12)
+    d.text((56, 712), "Tap to open dialer campaign", fill=TEXT_DIM, font=f10)
+
+    rr(d, (36, 788, pw - 36, 860), 16, GREEN_BTN)
+    d.text((int((pw - _text_w(f14, "Call merchant")) / 2), 812), "Call merchant", fill=WHITE, font=f14)
+
+    return img
+
+
+def draw_desktop_crm() -> np.ndarray:
+    """Static CRM board frame for 3D laptop screen."""
+    arr = bg_array()
+    img = Image.fromarray(arr).convert("RGBA")
+    d = ImageDraw.Draw(img)
+    nav = _font(WIN_FONT_SEMI, 28)
+    row = _font(WIN_FONT_SEMI, 32)
+    sm = _font(WIN_FONT_REG, 26)
+    title = _font(WIN_FONT_SEMI, 38)
+
+    wx0, wy0, wx1, wy1 = 64, 48, W - 64, H - 40
+    rr(d, (wx0, wy0, wx1, wy1), 16, (*CARD_BG2, 255))
+    rr(d, (wx0, wy0, wx1, wy0 + 60), 12, (18, 18, 22, 255))
+    d.text((wx0 + 52, wy0 + 16), "Fund Pilot — CRM", fill=GRAY, font=sm)
+
+    ix, iy = wx0 + 32, wy0 + 82
+    pills = ["Home", "CRM", "Call", "Analyze"]
+    px = ix
+    for p in pills:
+        active = p == "CRM"
+        pw_p = int(_text_w(nav, p) + 44)
+        rr(d, (px, iy, px + pw_p, iy + 50), 10, ACCENT if active else DIM_BTN)
+        d.text((px + 20, iy + 10), p, fill=BTN_ON_ACCENT if active else TEXT, font=nav)
+        px += pw_p + 14
+
+    d.text((ix, iy + 78), "Deal board — 15,332 merchants", fill=TEXT, font=title)
+
+    cols = ["Merchant", "Monthly dep.", "Score", "Status"]
+    cx = ix
+    for c in cols:
+        d.text((cx, iy + 140), c, fill=ACCENT, font=sm)
+        cx += 420
+
+    rows = [
+        ("Summit Trucking LLC", "$142,000", "7.5", "Ready"),
+        ("Metro HVAC Services", "$98,400", "8.2", "Contacted"),
+        ("Coastal Auto Repair", "$76,200", "6.9", "Follow-up"),
+        ("Brightline Logistics", "$210,800", "9.1", "Dialing"),
+    ]
+    ry = iy + 190
+    for i, (name, dep, score, st) in enumerate(rows):
+        bg = (24, 24, 30) if i % 2 == 0 else CARD_BG
+        rr(d, (ix, ry, wx1 - 32, ry + 72), 12, bg)
+        d.text((ix + 20, ry + 20), name, fill=TEXT, font=row)
+        d.text((ix + 440, ry + 20), dep, fill=TEXT_DIM, font=sm)
+        d.text((ix + 860, ry + 20), score, fill=GREEN, font=row)
+        d.text((ix + 1040, ry + 20), st, fill=ACCENT if st == "Ready" else TEXT_DIM, font=sm)
+        ry += 82
+
+    return np.array(img.convert("RGB"))
+
+
+def save_device_screenshots() -> None:
+    draw_iphone_app_crm().save(ASSETS / "iphone-app-crm.png", optimize=True)
+    draw_iphone_app_deal().save(ASSETS / "iphone-app-deal.png", optimize=True)
+    Image.fromarray(draw_desktop_crm()).save(ASSETS / "desktop-crm-screenshot.png", optimize=True)
+
+
 def main() -> None:
+    """Generate all marketing assets (v2 videos + mobile PNGs)."""
+    from render_marketing_demos_v2 import render_all as render_v2
+
+    render_v2()
     ASSETS.mkdir(parents=True, exist_ok=True)
-
-    n_desk = int(16 * FPS)
-    print("Desktop…", ASSETS / "demo-desktop-analyze.mp4")
-    write_mp4(
-        ASSETS / "demo-desktop-analyze.mp4",
-        (draw_desktop_story(i, n_desk) for i in range(n_desk)),
-        FPS,
-        "23",
-    )
-
-    print("Mobile screenshots…", ASSETS / "mobile-screenshot-calendar.png", ASSETS / "mobile-screenshot-notification.png")
+    print("Mobile screenshots…")
     save_mobile_screenshots()
-    print("iPhone hero…", ASSETS / "iphone-followup-notification-demo.png")
     save_iphone_lock_demo()
-    print("Done.")
+    print("Device PNGs (CRM phone mocks)…")
+    save_device_screenshots()
+    print("All marketing assets complete.")
 
 
 if __name__ == "__main__":
