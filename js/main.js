@@ -59,7 +59,10 @@
   }
 
   var reveals = document.querySelectorAll(".reveal");
-  if (reveals.length && !reducedMotion) {
+  var isMobile = window.matchMedia("(max-width: 900px)").matches;
+  if (reveals.length && (isMobile || reducedMotion)) {
+    reveals.forEach(function (el) { el.classList.add("is-visible"); });
+  } else if (reveals.length) {
     var revObs = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {

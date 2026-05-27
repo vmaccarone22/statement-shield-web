@@ -1,6 +1,13 @@
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (typeof THREE === "undefined") return;
+
+  var isMobile = window.matchMedia("(max-width: 900px)").matches;
+  if (isMobile) {
+    document.documentElement.classList.add("mobile-static");
+    return;
+  }
+
+  var hasThree = typeof THREE !== "undefined";
 
   var GOLD = 0xd4af73;
   var SAGE = 0x8eb69b;
@@ -17,6 +24,7 @@
   }
 
   function buildScene(type) {
+    if (!hasThree) return null;
     var scene = new THREE.Scene();
     var group = new THREE.Group();
     scene.add(group);
@@ -152,25 +160,30 @@
     var steps = section.querySelectorAll(".story-step");
     var visual = section.querySelector(".story-visual");
     var mediaItems = section.querySelectorAll(".story-media");
-    if (!canvas || !track || !steps.length) return;
+    if (!track || !steps.length) return;
 
     var type = section.getAttribute("data-scroll-story") || "default";
-    var built = buildScene(type);
-    var camera = new THREE.PerspectiveCamera(40, 1, 0.1, 80);
-    camera.position.set(0, 0, 5.5);
-    var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setClearColor(0x000000, 0);
+    var built = hasThree && canvas ? buildScene(type) : null;
+    var renderer = null;
+    var camera = null;
 
-    function resize() {
-      var w = canvas.clientWidth;
-      var h = canvas.clientHeight;
-      if (!w || !h) return;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
+    if (built && canvas) {
+      camera = new THREE.PerspectiveCamera(40, 1, 0.1, 80);
+      camera.position.set(0, 0, 5.5);
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setClearColor(0x000000, 0);
+
+      function resize() {
+        var w = canvas.clientWidth;
+        var h = canvas.clientHeight;
+        if (!w || !h) return;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+      resize();
     }
-    resize();
 
     instances.push({
       section: section,
@@ -181,6 +194,7 @@
       built: built,
       camera: camera,
       renderer: renderer,
+      canvas: canvas,
       progress: 0,
       visible: false,
     });
@@ -217,27 +231,36 @@
       });
     }
 
-    var g = inst.built.group;
-    var p = progress;
-    g.rotation.y = p * Math.PI * 1.6 - 0.4;
-    g.rotation.x = Math.sin(p * Math.PI) * 0.22;
-    g.position.y = Math.sin(p * Math.PI * 2) * 0.15;
-    g.scale.setScalar(0.85 + p * 0.35);
+    if (inst.built) {
+      var g = inst.built.group;
+      var p = progress;
+      g.rotation.y = p * Math.PI * 1.6 - 0.4;
+      g.rotation.x = Math.sin(p * Math.PI) * 0.22;
+      g.position.y = Math.sin(p * Math.PI * 2) * 0.15;
+      g.scale.setScalar(0.85 + p * 0.35);
 
-    inst.camera.position.z = 5.8 - p * 1.4;
-    inst.camera.position.x = Math.sin(p * Math.PI * 2) * 0.35;
-    inst.camera.lookAt(0, 0, 0);
+      inst.camera.position.z = 5.8 - p * 1.4;
+      inst.camera.position.x = Math.sin(p * Math.PI * 2) * 0.35;
+      inst.camera.lookAt(0, 0, 0);
+
+      inst.built.extras.forEach(function (mesh, i) {
+        if (mesh.geometry && mesh.geometry.type === "TorusGeometry") {
+          mesh.scale.setScalar(1 + p * (0.4 + i * 0.15));
+          mesh.material.opacity = Math.max(0.08, 0.4 - i * 0.1 + p * 0.2);
+        }
+      });
+    }
 
     if (inst.visual) {
       var hasMedia = inst.mediaItems && inst.mediaItems.length;
       if (hasMedia) {
-        var subtle = 0.98 + p * 0.04;
+        var subtle = 0.98 + progress * 0.04;
         inst.visual.style.transform = "scale(" + subtle.toFixed(3) + ")";
       } else {
-        var scale = 0.92 + p * 0.12;
-        var rotY = -14 + p * 28;
-        var rotX = 6 - p * 10;
-        var ty = (p - 0.5) * -40;
+        var scale = 0.92 + progress * 0.12;
+        var rotY = -14 + progress * 28;
+        var rotX = 6 - progress * 10;
+        var ty = (progress - 0.5) * -40;
         inst.visual.style.transform =
           "perspective(1200px) translateY(" +
           ty.toFixed(1) +
@@ -250,13 +273,6 @@
           "deg)";
       }
     }
-
-    inst.built.extras.forEach(function (mesh, i) {
-      if (mesh.geometry && mesh.geometry.type === "TorusGeometry") {
-        mesh.scale.setScalar(1 + p * (0.4 + i * 0.15));
-        mesh.material.opacity = Math.max(0.08, 0.4 - i * 0.1 + p * 0.2);
-      }
-    });
 
     inst.progress = progress;
   }
@@ -285,10 +301,9 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", function () {
     instances.forEach(function (inst) {
-      var canvas = inst.section.querySelector(".story-canvas");
-      if (!canvas) return;
-      var w = canvas.clientWidth;
-      var h = canvas.clientHeight;
+      if (!inst.renderer || !inst.canvas) return;
+      var w = inst.canvas.clientWidth;
+      var h = inst.canvas.clientHeight;
       if (!w || !h) return;
       inst.renderer.setSize(w, h, false);
       inst.camera.aspect = w / h;
@@ -299,15 +314,17 @@
 
   onScroll();
 
-  var t0 = performance.now();
-  function tick(now) {
-    var t = (now - t0) * 0.001;
-    instances.forEach(function (inst) {
-      if (!inst.visible) return;
-      inst.built.particles.rotation.y = t * 0.06 + inst.progress * 0.5;
-      inst.renderer.render(inst.built.scene, inst.camera);
-    });
+  if (hasThree) {
+    var t0 = performance.now();
+    function tick(now) {
+      var t = (now - t0) * 0.001;
+      instances.forEach(function (inst) {
+        if (!inst.visible || !inst.renderer || !inst.built) return;
+        inst.built.particles.rotation.y = t * 0.06 + inst.progress * 0.5;
+        inst.renderer.render(inst.built.scene, inst.camera);
+      });
+      requestAnimationFrame(tick);
+    }
     requestAnimationFrame(tick);
   }
-  requestAnimationFrame(tick);
 })();

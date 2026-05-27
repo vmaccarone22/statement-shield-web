@@ -8,12 +8,14 @@
   <meta property="og:title" content="Fund Pilot — Plug-and-play MCA platform" />
   <meta property="og:description" content="Analyze statements, run CRM, dial merchants, and manage fresh leads — one program, one login." />
   <meta property="og:image" content="assets/social-card.svg" />
+  <meta property="og:site_name" content="Fund Pilot" />
+  <link rel="canonical" href="https://www.fundpilot.xyz/" />
   <title>Fund Pilot — Plug-and-play platform for MCA companies</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/apple.css?v=13" />
+  <link rel="stylesheet" href="css/styles.css?v=14" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -525,9 +527,24 @@
     <div class="wrap footer-bottom"><span>© <span id="y"></span> Fund Pilot</span></div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
-  <script src="js/hero-3d.js?v=202605258" defer></script>
-  <script src="js/scroll-story.js?v=11" defer></script>
-  <script src="js/apple-scroll.js?v=6" defer></script>
+  <script src="js/scroll-story.js?v=12" defer></script>
+  <script src="js/main.js?v=8" defer></script>
+  <script>
+    (function () {
+      var mobile = window.matchMedia("(max-width: 900px)").matches;
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (mobile || reduced) return;
+      var three = document.createElement("script");
+      three.src = "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js";
+      three.defer = true;
+      three.onload = function () {
+        var hero = document.createElement("script");
+        hero.src = "js/hero-3d.js?v=202605268";
+        hero.defer = true;
+        document.body.appendChild(hero);
+      };
+      document.body.appendChild(three);
+    })();
+  </script>
 </body>
 </html>

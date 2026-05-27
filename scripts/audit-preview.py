@@ -1,4 +1,4 @@
-"""Capture each scroll-step of website-apple for visual QA."""
+"""Capture each scroll-step of the Fund Pilot website for visual QA."""
 from __future__ import annotations
 
 import os

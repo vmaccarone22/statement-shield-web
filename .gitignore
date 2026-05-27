@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Editors / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs & temp
+*.log
+*.tmp
+*.temp
+
+# Secrets (never commit)
+.env
+.env.*
+!.env.example
+
+# Python (if you use local scripts)
+__pycache__/
+*.py[cod]
+.Python
+venv/
+.venv/

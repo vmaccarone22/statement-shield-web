@@ -1,5 +1,6 @@
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia("(max-width: 900px)").matches) return;
 
   var canvas = document.getElementById("hero-canvas");
   if (!canvas || typeof THREE === "undefined") return;
