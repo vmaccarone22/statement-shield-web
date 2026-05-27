@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#1a150c"/>
+  <!-- Fund Pilot “F” mark -->
+  <path d="M11 22V10h9.8v2.6H13.7v2.9h6.2v2.6h-6.2V22H11z" fill="#d4af73"/>
+</svg>

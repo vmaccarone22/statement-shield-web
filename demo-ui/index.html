@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fund Pilot Demo UI</title>
+  <link rel="stylesheet" href="demo-ui.css" />
+</head>
+<body>
+  <main class="capture-stage">
+    <section class="app-window" id="appWindow" aria-label="Fund Pilot desktop demo UI">
+      <div class="titlebar">
+        <div class="brand"><span class="brand-mark">FP</span><span>Fund Pilot MCA</span><small>2026-05-26-crm56 DEV</small></div>
+        <div class="window-actions"><span></span><span></span><span></span></div>
+      </div>
+      <div class="app-shell">
+        <aside class="sidebar">
+          <div class="profile">
+            <div class="avatar">DB</div>
+            <div><strong>Demo Broker</strong><span>Demo account</span></div>
+          </div>
+          <nav>
+            <a data-nav="command">Command center</a>
+            <a data-nav="crm">CRM</a>
+            <a data-nav="analyze">Analyze</a>
+            <a data-nav="pilot">Pilot</a>
+            <a data-nav="dialer">Dialer</a>
+            <a data-nav="admin">Admin</a>
+          </nav>
+          <div class="sidebar-card">
+            <span>Cloud CRM</span>
+            <strong>Connected</strong>
+          </div>
+        </aside>
+        <section class="content" id="content"></section>
+      </div>
+    </section>
+  </main>
+  <script>
+    const money = n => "$" + n.toLocaleString();
+    const leads = [
+      ["Demo Merchant Supply LLC", "NEW INTAKE", 142500, "Demo Broker", "555-555-5555"],
+      ["Sample Restaurant Group Inc", "NEED FILES", 88200, "Demo Broker", "555-555-5555"],
+      ["Example Auto Repair LLC", "ANALYZED", 201400, "Demo Rep 02", "555-555-5555"],
+      ["Metro Logistics Demo Inc", "WORKSPACE", 96750, "Demo Rep 03", "555-555-5555"],
+      ["Coastal Services Demo LLC", "CONTACTED", 118900, "Demo Manager", "555-555-5555"],
+    ];
+    const screen = new URLSearchParams(location.search).get("screen") || "features";
+    document.body.dataset.screen = screen;
+    document.querySelectorAll("[data-nav]").forEach(a => {
+      const group = screen.includes("crm") || screen.includes("deal") ? "crm"
+        : screen.includes("pilot") || screen.includes("hunter") ? "pilot"
+        : screen.includes("admin") || screen.includes("import") || screen.includes("ops") ? "admin"
+        : screen.includes("analyze") ? "analyze"
+        : screen.includes("activity") || screen.includes("dialer") ? "dialer"
+        : screen.includes("floor") ? "command"
+        : screen.includes("checks") ? "analyze"
+        : "command";
+      a.classList.toggle("active", a.dataset.nav === group);
+    });
+
+    function metric(label, value, tone="") {
+      return `<div class="metric ${tone}"><span>${label}</span><strong>${value}</strong></div>`;
+    }
+    function leadCards(limit=5) {
+      return leads.slice(0, limit).map(([biz, status, amount, broker, phone]) => `
+        <article class="deal-card">
+          <div><strong>${biz}</strong><span>${broker} · ${phone}</span></div>
+          <div class="pill">${status}</div>
+          <div class="amount">${money(amount)}</div>
+          <p>Notes: owner requested a callback after reviewing statements. Files are queued for Analyze.</p>
+          <div class="card-actions"><button>Call</button><button>Text</button><button>Open</button></div>
+        </article>`).join("");
+    }
+    function tableRows() {
+      return leads.map(([biz, status, amount, broker, phone], i) => `
+        <tr><td><strong>${biz}</strong><span>${phone}</span></td><td>${status}</td><td>${broker}</td><td>${money(amount)}</td><td>${i % 2 ? "Texted" : "Called"}</td></tr>
+      `).join("");
+    }
+    const screens = {
+      features: () => `
+        <header class="page-head center"><p>Command center</p><h1>One MCA desk for the whole workflow.</h1><span>CRM, Analyze, Pilot, Dialer, and Lead Hunter in one desktop app.</span></header>
+        <div class="metric-grid">${metric("Fresh leads", "128")}${metric("Workspace deals", "42")}${metric("Calls MTD", "1,284")}${metric("Est. pipeline", "$3.2M", "gold")}</div>
+        <div class="feature-grid">
+          <div class="feature wide"><h3>Today’s desk</h3><p>Callbacks, fresh leads, active files, and broker activity stay visible without browser hopping.</p>${leadCards(3)}</div>
+          <div class="feature"><h3>Pilot ready</h3><div class="bot-bubble">Hey Demo Broker, I’m your co-pilot. What do you need help with today?</div><button class="primary">Trace owner cell</button></div>
+          <div class="feature"><h3>Lead assignment</h3><p>Admins import to one broker or distribute a large CSV evenly.</p><div class="mini-bars"><span style="height:72%"></span><span style="height:48%"></span><span style="height:64%"></span></div></div>
+        </div>`,
+      command: () => `
+        <header class="page-head"><p>Command center</p><h1>Good day, Demo Broker.</h1><span>Your callbacks, lead queue, and workspace snapshot are ready.</span></header>
+        <div class="split">
+          <div class="panel"><h3>Quick actions</h3><div class="quick-grid"><button>CRM Board</button><button>Lead Hunter</button><button>Import PDFs</button><button>Dialer Queue</button></div></div>
+          <div class="panel"><h3>Today</h3><ul class="timeline"><li>8 callbacks due</li><li>14 new leads assigned</li><li>6 files ready for scoring</li><li>3 follow-ups waiting</li></ul></div>
+        </div>
+        <div class="panel"><h3>Fresh broker leads</h3><div class="table"><table><tbody>${tableRows()}</tbody></table></div></div>`,
+      board: () => `
+        <header class="page-head"><p>CRM board</p><h1>Fresh leads, callbacks, and email in one tab.</h1><span>Broker-scoped lead cards sit beside the recent inbox, just like the real CRM view.</span></header>
+        <div class="crm-email-layout">
+          <div>
+            <div class="toolbar"><button class="active">Fresh leads</button><button>Workspace</button><button>Contacted</button><select><option>Newest first</option></select><input value="Search merchant or owner" /></div>
+            <div class="cards-grid compact-cards">${leadCards(4)}</div>
+          </div>
+          <div class="panel email-panel"><h3>Recent email</h3><div class="email-row"><strong>Demo Merchant Supply</strong><span>merchant@example.com · Statements attached for review</span><button>Reply</button></div><div class="email-row"><strong>Sample Restaurant Group</strong><span>owner@example.com · Re: funding range request</span><button>Reply</button></div><div class="email-row"><strong>Example Auto Repair</strong><span>docs@example.com · Voided check and license</span><button>Reply</button></div><a>Signature & settings</a></div>
+        </div>`,
+      deal: () => `
+        <header class="page-head"><p>Deal detail</p><h1>Demo Merchant Supply LLC</h1><span>Phone, docs, score, notes, and next action live on one merchant record.</span></header>
+        <div class="deal-layout">
+          <div class="panel deal-main"><div class="score-ring">82</div><h3>Recommended range ${money(142500)}</h3><p>Strong daily balances, clean activity, and moderate stacking risk.</p><div class="card-actions"><button class="primary">Analyze</button><button>Call</button><button>Text</button></div></div>
+          <div class="panel"><h3>Files</h3><ul class="file-list"><li>March bank statement.pdf</li><li>April bank statement.pdf</li><li>Driver license.png</li><li>Voided check.pdf</li></ul></div>
+          <div class="panel notes"><h3>Notes</h3><p>Owner asked for terms after lunch. Assistant summary and full notes are available from the deal card.</p><button>View full notes</button></div>
+        </div>`,
+      analyze: () => `
+        <header class="page-head"><p>Statement Analyzer</p><h1>Statements become a funding picture.</h1><span>Deposits, negative days, merchant checks, positions, and funding range in one screen.</span></header>
+        <div class="analyzer-screen">
+          <div class="panel"><h3>Scanning statements</h3><div class="scan-row done"><strong>March statement.pdf</strong><span>Deposits found · account 4821</span></div><div class="scan-row done"><strong>April statement.pdf</strong><span>NSF / negative days checked</span></div><div class="scan-row active"><strong>May statement.pdf</strong><span>Parsing transactions...</span></div><div class="scan-progress"><b style="width:78%"></b></div><p class="muted">OCR fallback reads scanned PDFs when text is thin.</p></div>
+          <div class="panel"><h3>Results</h3><div class="metric-grid compact">${metric("Score", "8.2")}${metric("Avg deposits", "$94k/mo")}${metric("Range", "$110k-$145k", "gold")}</div><div class="check-grid"><span>NSF: 2 total</span><span>Negative days: 4</span><span>Daily balance: strong</span><span>Positions: 2 detected</span></div><div class="chart"><span style="height:42%"></span><span style="height:66%"></span><span style="height:74%"></span><span style="height:58%"></span><span style="height:81%"></span></div></div>
+          <div class="panel lender-panel"><h3>Recommended lenders</h3><div class="lender-row"><strong>Forward Financing</strong><span>QUALIFIES · est. $125,000 · 1.15-1.49</span></div><div class="lender-row"><strong>Credibly</strong><span>QUALIFIES · est. $103,500 · 1.15-1.45</span></div><div class="lender-row"><strong>Kapitus</strong><span>LIKELY · verify FICO · 12 pts max</span></div><div class="lender-row muted-row"><strong>Libertas Funding</strong><span>Review: high monthly minimum</span></div></div>
+        </div>`,
+      checks: () => `
+        <header class="page-head"><p>Merchant checks</p><h1>See the data behind the offer.</h1><span>Fund Pilot reads the statement and surfaces the checks brokers care about.</span></header>
+        <div class="checks-layout">
+          <div class="panel"><h3>Merchant check summary</h3><div class="check-list"><div><strong>Deposits</strong><span>$94,200 monthly average</span></div><div><strong>Revenue trend</strong><span>Up 12% over prior month</span></div><div><strong>NSF / returns</strong><span>2 NSF, 1 returned item</span></div><div><strong>Existing positions</strong><span>2 active MCA payments detected</span></div><div><strong>Suggested range</strong><span>$110,000 - $145,000</span></div></div></div>
+          <div class="panel"><h3>Bank activity sample</h3><div class="table"><table><thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Check</th></tr></thead><tbody><tr><td>05/03</td><td>Card batch deposit</td><td>$8,420</td><td>Deposit</td></tr><tr><td>05/07</td><td>ACH funding payment</td><td>-$1,180</td><td>Position</td></tr><tr><td>05/14</td><td>Merchant check #1042</td><td>-$2,450</td><td>Cleared</td></tr><tr><td>05/22</td><td>Card batch deposit</td><td>$9,180</td><td>Deposit</td></tr></tbody></table></div></div>
+        </div>`,
+      floor: () => `
+        <header class="page-head"><p>52-broker floor</p><h1>Know who is calling, live.</h1><span>Managers see every broker's call state, idle time, callbacks, and active lines.</span></header>
+        <div class="floor-layout">
+          <div class="panel floor-map"><h3>Live floor view</h3><div class="seat-grid">${Array.from({length:52},(_,i)=>`<span class="${i%5===0?'calling':i%7===0?'idle':i%9===0?'wrap':'ready'}">${String(i+1).padStart(2,'0')}<em>${i%5===0?'CALL':i%7===0?'IDLE':i%9===0?'LOG':'READY'}</em></span>`).join("")}</div></div>
+          <div class="panel"><h3>Broker call monitor</h3><div class="metric-grid compact">${metric("Brokers", "52")}${metric("On calls", "18")}${metric("Idle", "7")}</div><div class="broker-status"><div><strong>Broker 01</strong><span class="calling">Live call · 04:12</span><em>555-555-5555</em></div><div><strong>Broker 07</strong><span class="idle">Idle · 18 min</span><em>Next lead waiting</em></div><div><strong>Broker 19</strong><span class="wrap">Disposition log</span><em>Callback saved</em></div><div><strong>Broker 31</strong><span class="calling">Live call · 01:48</span><em>555-555-5555</em></div></div></div>
+        </div>`,
+      activity: () => `
+        <header class="page-head"><p>Activity log</p><h1>Calls and texts stay attached.</h1><span>Managers can see every touch without leaving the deal workflow.</span></header>
+        <div class="panel"><div class="table activity"><table><thead><tr><th>Type</th><th>Merchant</th><th>Phone</th><th>Outcome</th><th>Rep</th></tr></thead><tbody>
+          <tr><td>Call</td><td>Demo Merchant Supply</td><td>555-555-5555</td><td>Callback set</td><td>Demo Broker</td></tr>
+          <tr><td>Text</td><td>Sample Restaurant Group</td><td>555-555-5555</td><td>Docs requested</td><td>Demo Broker</td></tr>
+          <tr><td>Call</td><td>Example Auto Repair</td><td>555-555-5555</td><td>Offer sent</td><td>Demo Rep 02</td></tr>
+          <tr><td>Text</td><td>Coastal Services Demo</td><td>555-555-5555</td><td>Follow-up</td><td>Demo Manager</td></tr>
+        </tbody></table></div></div>`,
+      dialerCampaign: () => `
+        <header class="page-head"><p>Power dialer</p><h1>Eight calls can run at once.</h1><span>Campaigns queue multiple merchants, log dispositions, and keep reps in Fund Pilot.</span></header>
+        <div class="dialer-layout">
+          <div class="panel"><h3>Campaign: Morning follow-up</h3><div class="call-grid">${Array.from({length:8},(_,i)=>`<div><strong>Line ${i+1}</strong><span>555-555-5555</span><em>${i%3===0?'Ringing':i%3===1?'Connected':'Queued'}</em></div>`).join("")}</div></div>
+          <div class="panel"><h3>Disposition queue</h3><div class="check-list"><div><strong>Connected</strong><span>2 live calls</span></div><div><strong>Ringing</strong><span>3 merchants</span></div><div><strong>Queued</strong><span>3 next calls</span></div><div><strong>Auto-log</strong><span>Call outcome saved to CRM</span></div></div><button class="primary">Start campaign</button></div>
+        </div>`,
+      pilot: () => `
+        <header class="page-head"><p>Fund Pilot Bot</p><h1>Pilot runs beside the desk.</h1><span>Voice, text, file drop, and quick trace prompts without opening a new tab.</span></header>
+        <div class="pilot-layout">
+          <div class="panel">${leadCards(2)}</div>
+          <div class="pilot-panel"><div class="bot-head"><span class="bot-avatar">FP</span><div><strong>Fund Pilot Bot</strong><small>Co-pilot online</small></div></div><div class="chat"><p class="bot">Hey Demo Broker, I’m your co-pilot. What do you need help with today?</p><p class="user">Trace this business owner and find the best number.</p><p class="bot">I found a likely owner match, current address, and two phone candidates. Best number: 555-555-5555.</p></div><button class="primary">Save to CRM</button></div>
+        </div>`,
+      bot: () => `
+        <div class="portrait-bot"><div class="bot-head"><span class="bot-avatar big">FP</span><div><strong>Fund Pilot Bot</strong><small>Lead Hunter · Pilot Drop · CRM help</small></div></div><div class="chat tall"><p class="bot">Hey Demo Broker, I’m your co-pilot. What do you need help with today?</p><p class="user">Help me narrow this merchant down.</p><p class="bot">A state or city would help narrow the match. If you have the business phone, I can compare owner names, addresses, and likely cells.</p></div><div class="prompt-row"><button>Trace number</button><button>Read file</button></div></div>`,
+      hunter: () => `
+        <header class="page-head"><p>Lead Hunter</p><h1>Trace the line before you dial.</h1><span>Pilot compares signals and returns a clean owner/contact summary.</span></header>
+        <div class="hunter-layout">
+          <div class="panel"><h3>Search</h3><label>Business or owner</label><input value="Demo Merchant Supply LLC" /><label>Phone</label><input value="555-555-5555" /><label>City / state</label><input value="Demo City, NY" /><button class="primary">Run AI trace</button></div>
+          <div class="panel results"><h3>AI trace result</h3><p><strong>Most likely owner:</strong> Demo Owner</p><p><strong>Best phone:</strong> 555-555-5555 · high confidence</p><p><strong>Other phones:</strong> 555-555-5555, 555-555-5555</p><p><strong>Likely address:</strong> 48 Demo Street, Demo City NY</p><p class="muted">Need more precision? Add state, website, or DBA variation.</p></div>
+        </div>`,
+      adminImport: () => `
+        <header class="page-head"><p>Admin import</p><h1>Choose exactly where imported leads go.</h1><span>Assign all leads to one broker, split a massive CSV evenly, or intentionally share company-wide.</span></header>
+        <div class="admin-layout">
+          <div class="panel"><h3>Import fresh leads</h3><div class="drop">Drop CSV file here</div><label>Assignment mode</label><select><option>Evenly distribute across selected brokers</option></select><label>Brokers</label><div class="broker-list"><span>Demo Broker</span><span>Demo Rep 02</span><span>Demo Rep 03</span></div><button class="primary">Import leads</button></div>
+          <div class="panel"><h3>Preview distribution</h3><div class="bar-row"><span>Broker 01</span><b style="width:72%"></b><em>420</em></div><div class="bar-row"><span>Broker 02</span><b style="width:69%"></b><em>418</em></div><div class="bar-row"><span>Broker 03</span><b style="width:70%"></b><em>419</em></div></div>
+        </div>`,
+      ops: () => `
+        <header class="page-head"><p>Ops controls</p><h1>Company lead distribution at a glance.</h1><span>Fund Pilot Ops can audit broker counts and safely rebalance Fresh leads.</span></header>
+        <div class="panel"><div class="table"><table><thead><tr><th>Broker</th><th>Fresh leads</th><th>Est. funding</th><th>Action</th></tr></thead><tbody>
+          <tr><td>Demo Broker</td><td>420</td><td>$4.2M</td><td><button>Reassign</button></td></tr>
+          <tr><td>Demo Rep 02</td><td>418</td><td>$4.1M</td><td><button>Reassign</button></td></tr>
+          <tr><td>Shared / unassigned</td><td>16</td><td>$180k</td><td><button>Assign</button></td></tr>
+        </tbody></table></div></div>`,
+    };
+    const aliases = {
+      "features-overview": "features",
+      "command-center": "command",
+      "broker-floor": "floor",
+      "crm-deal-board": "board",
+      "crm-deal-detail": "deal",
+      "analyze-files": "analyze",
+      "merchant-checks": "checks",
+      "crm-dashboard": "adminImport",
+      "crm-activity": "activity",
+      "dialer-campaign": "dialerCampaign",
+      "pilot-desk": "pilot",
+      "pilot-bot": "bot",
+      "lead-hunter": "hunter",
+      "admin-import": "adminImport",
+      "ops-distribution": "ops",
+    };
+    content.innerHTML = (screens[aliases[screen] || screen] || screens.features)();
+  </script>
+</body>
+</html>

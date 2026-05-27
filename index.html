@@ -1,20 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#060607" />
-  <meta name="description" content="Fund Pilot — the plug-and-play MCA platform. One program for underwriting, CRM, dialer, and fresh leads. Switch your shop or launch a new company." />
+  <meta name="description" content="Fund Pilot — the plug-and-play MCA platform. Scroll through Analyze, CRM, Pilot AI, dialer, and lead controls — one program, one login." />
   <meta property="og:title" content="Fund Pilot — Plug-and-play MCA platform" />
-  <meta property="og:description" content="Analyze statements, run CRM, dial merchants, and buy fresh leads — one program, one login." />
+  <meta property="og:description" content="Analyze statements, run CRM, dial merchants, and manage fresh leads — one program, one login." />
   <meta property="og:image" content="assets/social-card.svg" />
-  <meta property="og:type" content="website" />
   <title>Fund Pilot — Plug-and-play platform for MCA companies</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=202605260" />
+  <link rel="stylesheet" href="css/apple.css?v=13" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -23,384 +22,485 @@
 
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
-      <a class="logo" href="#top">
-        <span class="logo-mark">F</span>
-        Fund Pilot
-      </a>
+      <a class="logo" href="#top"><span class="logo-mark">F</span> Fund Pilot</a>
       <nav class="nav-links" id="nav-menu">
-        <a href="#platform">Platform</a>
+        <a href="#desk">Platform</a>
+        <a href="#analyze">Analyze</a>
+        <a href="#crm">CRM</a>
         <a href="#pilot">Pilot</a>
-        <a href="#paths">Get started</a>
-        <a href="#leads">Leads</a>
-        <a href="#demo">Demo</a>
-        <a href="#pricing">Plans</a>
+        <a href="#dialer">Dialer</a>
+        <a href="#plans">Plans</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-cta">
         <a class="btn btn-ghost" href="#contact">Book a call</a>
-        <a class="btn btn-primary" href="#pricing">View plans</a>
+        <a class="btn btn-primary" href="#plans">View plans</a>
       </div>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav-menu">☰</button>
     </div>
   </header>
 
+  <nav class="product-nav" id="productNav" aria-label="Product sections">
+    <div class="wrap product-nav-inner">
+      <span class="product-nav-title">Fund Pilot Platform</span>
+      <div class="product-nav-links">
+        <a href="#desk" data-section="desk">Platform</a>
+        <a href="#analyze" data-section="analyze">Analyze</a>
+        <a href="#crm" data-section="crm">CRM</a>
+        <a href="#pilot" data-section="pilot">Pilot</a>
+        <a href="#dialer" data-section="dialer">Dialer</a>
+        <a href="#leads" data-section="leads">Lead Hunter</a>
+        <a href="#plans" data-section="plans">Plans</a>
+      </div>
+      <a class="product-nav-cta btn btn-primary btn-sm" href="#contact">Get started</a>
+    </div>
+  </nav>
+
   <main id="main">
+    <!-- Hero -->
     <section class="hero-3d" id="top">
       <div class="wrap hero-3d-grid">
         <div class="hero-3d-copy reveal">
           <p class="eyebrow">Built for ISOs &amp; MCA brokerages</p>
           <h1>The plug-and-play platform your shop should have had <em>years ago</em>.</h1>
-          <p class="hero-lead">
-            One program. Analyze bank statements, run your deal board, dial merchants, and buy fresh leads — without stitching together five vendors and three logins.
-          </p>
+          <p class="hero-lead">One program. Analyze bank statements, run your deal board, dial merchants, and manage fresh leads — without stitching together five vendors.</p>
           <div class="hero-actions">
             <a class="btn btn-primary btn-lg" href="#contact">Hop on a sales call</a>
-            <a class="btn btn-ghost btn-lg" href="#demo">Watch it work</a>
+            <a class="btn btn-ghost btn-lg" href="#showreel">Watch it work</a>
           </div>
           <div class="hero-proof">
-            <div><strong>100+</strong><span>MCA companies in our rollout data</span></div>
+            <div><strong>100+</strong><span>MCA companies in rollout</span></div>
             <div><strong>One app</strong><span>Analyze · CRM · Dialer</span></div>
-            <div><strong>2 weeks</strong><span>Free trial on Core</span></div>
+          <div><strong>Custom</strong><span>Pricing by rollout</span></div>
           </div>
         </div>
-        <div class="hero-3d-visual reveal">
-          <div class="hero-3d-canvas-wrap" aria-hidden="true">
-            <canvas id="hero-canvas"></canvas>
+        <div class="hero-3d-visual hero-3d-visual--showcase reveal">
+          <div class="hero-3d-canvas-wrap hero-3d-canvas-wrap--subtle" aria-hidden="true"><canvas id="hero-canvas"></canvas></div>
+          <div class="ui-showcase ui-showcase--hero">
+            <div class="ui-showcase-stage">
+              <div class="ui-showcase-frame">
+                <img src="assets/marketing/features-overview.png?v=202605288" alt="Fund Pilot features overview" width="1360" height="828" fetchpriority="high" />
+              </div>
+            </div>
           </div>
-          <div class="tilt-stage tilt-stage--hero" data-tilt data-tilt-max="16">
-            <div class="tilt-inner">
-              <div class="device-cluster device-cluster--hero">
-                <div class="device-laptop" data-parallax="0.05" data-parallax-base="translate(-50%, -50%) translate3d(0, 0, 40px) rotateX(8deg) rotateY(-14deg)">
-                  <div class="device-laptop-lid">
-                    <div class="device-laptop-bezel">
-                      <video class="device-screen-fill demo-video" muted playsinline loop preload="none" data-priority="high" data-lazy-src="assets/demo-desktop-analyze-lite.mp4?v=202605258" poster="assets/desktop-analyze-summary.png"></video>
+        </div>
+      </div>
+      <p class="hero-scroll-hint" aria-hidden="true">Scroll to explore</p>
+    </section>
+
+    <!-- Platform / command center -->
+    <section class="scroll-story scroll-story--alt" id="desk" data-nav-section="desk" data-scroll-story="crm">
+      <div class="scroll-story-track">
+        <div class="scroll-story-pin">
+          <canvas class="story-canvas" aria-hidden="true"></canvas>
+          <div class="story-layout">
+            <div class="story-copy">
+              <div class="story-step is-active">
+                <p class="eyebrow">One MCA desk</p>
+                <h2>Everything in<br />Fund Pilot.</h2>
+                <p>CRM, Analyze, Pilot, dialer, Lead Hunter, and broker-floor controls — one login, one installer.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Broker floor</p>
+                <h2>Know who is<br />calling live.</h2>
+                <p>Managers can see who is calling, idle, logging dispositions, or ready for the next lead.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Built for brokers</p>
+                <h2>Pilot on desk.<br />No tab-hop workflow.</h2>
+                <p>Open Fund Pilot Bot while your callbacks, quick actions, and CRM snapshot stay in view.</p>
+              </div>
+            </div>
+            <div class="story-visual">
+              <div class="ui-showcase">
+                <div class="story-media-stack">
+                  <figure class="story-media is-active">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/features-overview.png?v=202605288" alt="Fund Pilot feature overview" width="1360" height="828" loading="lazy" /></div>
                     </div>
-                  </div>
-                  <div class="device-laptop-base"><div class="device-laptop-trackpad"></div></div>
-                  <div class="device-laptop-shadow" aria-hidden="true"></div>
-                </div>
-                <div class="device-phone device-phone--front" data-parallax="0.12" data-parallax-base="translate(-50%, -50%) translate3d(210px, 5px, 70px) rotateY(-22deg) rotateX(5deg) scale(0.88)" data-parallax-mobile="translate(-50%, -50%) translate3d(165px, 10px, 50px) rotateY(-18deg) rotateX(4deg) scale(0.78)">
-                  <div class="device-phone-shell">
-                    <div class="device-phone-notch" aria-hidden="true"></div>
-                    <img src="assets/iphone-app-crm.png" alt="" width="750" height="1624" class="device-phone-screen" loading="lazy" />
-                  </div>
-                </div>
-                <div class="device-phone device-phone--back" data-parallax="0.18" data-parallax-base="translate(-50%, -50%) translate3d(-195px, 70px, 35px) rotateY(28deg) rotateX(8deg) scale(0.78)" data-parallax-mobile="translate(-50%, -50%) translate3d(-155px, 55px, 30px) rotateY(24deg) rotateX(6deg) scale(0.72)">
-                  <div class="device-phone-shell">
-                    <div class="device-phone-notch" aria-hidden="true"></div>
-                    <img src="assets/iphone-followup-notification-demo.png" alt="" width="750" height="1624" class="device-phone-screen" loading="lazy" />
-                  </div>
-                </div>
-                <div class="float-chip float-chip--score" data-parallax="0.08" data-parallax-base="translate(-50%, -50%) translate3d(300px, 130px, 160px)">Score 7.5</div>
-                <div class="float-chip float-chip--range" data-parallax="0.06" data-parallax-base="translate(-50%, -50%) translate3d(310px, -120px, 120px)">$85K–$140K</div>
-                <div class="float-chip float-chip--dial" data-parallax="0.1" data-parallax-base="translate(-50%, -50%) translate3d(0, 250px, 100px)">Ready to dial</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="strip wrap reveal">
-      <p>We’ve onboarded shops running on spreadsheets, legacy CRMs, and duct-taped dialers. <strong>The pattern is always the same: chaos before Fund Pilot, clarity after.</strong> Closing rates improve when reps stop fighting their tools.</p>
-    </section>
-
-    <section id="paths" class="wrap section-pad">
-      <div class="section-head center reveal">
-        <h2>Two ways to work with us</h2>
-        <p class="section-desc">Whether you’re ripping out a broken stack or opening doors for the first time — we plug you in and stay on the call until your team is closing.</p>
-      </div>
-      <div class="path-grid">
-        <article class="path-card reveal">
-          <span class="path-icon">↻</span>
-          <h3>Switching your company over?</h3>
-          <p>Bring your book, your reps, and your messy folders. We migrate deals, configure your workspace, train every seat, and tune scoring language to match how <em>you</em> underwrite — not a generic template.</p>
-          <ul>
-            <li>Live working sessions with your ops lead</li>
-            <li>Deal import — no empty pipeline on day one</li>
-            <li>White-glove install kit for every broker</li>
-          </ul>
-          <a class="btn btn-primary" href="#contact">Talk switching</a>
-        </article>
-        <article class="path-card path-card--alt reveal">
-          <span class="path-icon">✦</span>
-          <h3>Starting a new MCA company?</h3>
-          <p>Launch with the same stack funded shops wish they had. Fund Pilot is your operating system from day one — underwriting, CRM, outbound, and lead flow in one brand your clients can trust.</p>
-          <ul>
-            <li>Company setup + user provisioning</li>
-            <li>Playbooks for reps and analysts</li>
-            <li>Scale from 2 desks to 50 without swapping tools</li>
-          </ul>
-          <a class="btn btn-ghost" href="#contact">Talk launch</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="pilot" class="section-pad pilot-section">
-      <div class="wrap">
-        <div class="section-head center reveal pilot-section-head">
-          <p class="eyebrow eyebrow--center">Fund Pilot Bot</p>
-          <h2>Say it out loud. Pilot runs the desk.</h2>
-          <p class="section-desc">Every broker gets a gold copilot — trace owner cells, jump CRM, queue dialer campaigns, and summarize pipeline without leaving the app.</p>
-        </div>
-        <div class="pilot-grid reveal">
-          <div class="pilot-visual">
-            <div class="scene-3d-bg scene-3d-bg--pilot" data-scene-3d data-scene-intensity="0.45" aria-hidden="true">
-              <canvas></canvas>
-            </div>
-            <div class="tilt-stage tilt-stage--pilot" data-tilt data-tilt-max="12">
-              <div class="tilt-inner">
-                <div class="device-laptop device-laptop--pilot" data-parallax="0.04" data-parallax-base="translate(-50%, -50%) translate3d(0, 0, 30px) rotateX(6deg) rotateY(-10deg)">
-                  <div class="device-laptop-lid">
-                    <div class="device-laptop-bezel">
-                      <video class="device-screen-fill demo-video" id="pilotFeaturedVideo" muted playsinline loop preload="none" controls data-lazy-src="assets/demo-assistant-pilot-lite.mp4?v=202605258" poster="assets/poster-assistant-pilot.png"></video>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/broker-floor.png?v=202605288" alt="52-broker floor dashboard with live activity" width="1360" height="828" loading="lazy" /></div>
                     </div>
-                  </div>
-                  <div class="device-laptop-base"><div class="device-laptop-trackpad"></div></div>
-                  <div class="device-laptop-shadow" aria-hidden="true"></div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/pilot-desk.png?v=202605288" alt="Command center with Fund Pilot Bot open" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
                 </div>
-                <p class="pilot-video-caption">“Hey Pilot — find Summit Trucking’s cell phone number”</p>
               </div>
             </div>
           </div>
-          <div class="pilot-copy">
-            <ul class="pilot-points">
-              <li><strong>Voice or text</strong> — gatekeeper blocked? Pilot hunts the merchant cell.</li>
-              <li><strong>One click to dialer</strong> — traced numbers land in Call, disposition saved to CRM.</li>
-              <li><strong>52 desks, one brain</strong> — every seat runs the same copilot, your rules.</li>
-            </ul>
-            <div class="demo-chip-row" role="tablist" aria-label="Pilot demo clips">
-              <button type="button" class="demo-chip is-active" data-demo-src="assets/demo-assistant-pilot-lite.mp4?v=202605258" data-demo-poster="assets/poster-assistant-pilot.png" data-demo-caption="“Hey Pilot — find Summit Trucking’s cell phone number”">Pilot trace</button>
-              <button type="button" class="demo-chip" data-demo-src="assets/demo-fleet-live-lite.mp4?v=202605258" data-demo-poster="assets/poster-fleet.png" data-demo-caption="52 brokers · headsets on · Pilot on every desk">52-desk floor</button>
-              <button type="button" class="demo-chip" data-demo-src="assets/demo-dialer-campaign-lite.mp4?v=202605258" data-demo-poster="assets/poster-dialer.png" data-demo-caption="Campaign queue → click-to-call → disposition logged">Dialer flow</button>
-            </div>
-          </div>
+          <div class="story-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
       </div>
     </section>
 
-    <section id="platform" class="section-pad platform-section">
-      <div class="wrap">
-        <div class="section-head center reveal">
-          <h2>Everything you need. One login.</h2>
-          <p class="section-desc">Fund Pilot replaces the patchwork. Your team opens one window and gets to work.</p>
-        </div>
-        <div class="platform-visual reveal">
-          <div class="scene-3d-bg scene-3d-bg--platform" data-scene-3d data-scene-intensity="0.45" aria-hidden="true">
-            <canvas></canvas>
-          </div>
-          <div class="cinema-block cinema-block--platform">
-            <div class="cinema-monitor">
-              <div class="cinema-bezel">
-                <video class="cinema-screen demo-video" muted playsinline loop preload="none" data-lazy-src="assets/demo-desktop-analyze-lite.mp4?v=202605258" poster="assets/desktop-analyze-summary.png"></video>
+    <!-- Analyze — scroll story -->
+    <section class="scroll-story" id="analyze" data-nav-section="analyze" data-scroll-story="analyze">
+      <div class="scroll-story-track">
+        <div class="scroll-story-pin">
+          <canvas class="story-canvas" aria-hidden="true"></canvas>
+          <div class="story-layout">
+            <div class="story-copy">
+              <div class="story-step is-active">
+                <p class="eyebrow">Statement analyzer</p>
+                <h2>Drop PDFs.<br />Score the file.</h2>
+                <p>Statements scan into deposits, funding range, positions, risk checks, and lender matches.</p>
               </div>
-              <div class="cinema-stand" aria-hidden="true"></div>
-              <div class="cinema-glow" aria-hidden="true"></div>
-            </div>
-            <p class="cinema-caption">Statement scan → weekly positions → DataMerch clear or default flagged</p>
-          </div>
-        </div>
-        <div class="feature-grid">
-        <article class="feature-card reveal">
-          <span class="feature-num">01</span>
-          <h3>Statement analysis</h3>
-          <p>Drop PDFs, get MCA scoring, funding range, stacking, and a defendable brief — in minutes, not hours.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="feature-num">02</span>
-          <h3>Native CRM</h3>
-          <p>Deal board, merchants, pipeline filters, email, SMS, and activity — built into the same app, not a separate website.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="feature-num">03</span>
-          <h3>Outbound dialer</h3>
-          <p>Campaigns, click-to-call, local caller ID, and dispositions logged to the deal. Reps stay in flow.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="feature-num">04</span>
-          <h3>Fund Pilot Bot</h3>
-          <p>AI copilot for gatekeeper runs, lead hunting, pipeline stats, and jumping anywhere in CRM — voice or text.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="feature-num">05</span>
-          <h3>App builder</h3>
-          <p>Branded merchant application PDFs and DocuSign-ready packages from the same desk that scored the file.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="feature-num">06</span>
-          <h3>Team admin</h3>
-          <p>Provision offices, assign brokers, enable features per company — built for ISOs reselling under their brand.</p>
-        </article>
-      </div>
-      </div>
-    </section>
-
-    <section id="leads" class="wrap section-pad">
-      <div class="leads-panel reveal">
-        <div class="leads-copy">
-          <p class="eyebrow">Lead marketplace · coming online</p>
-          <h2>The freshest leads in MCA — scored before they hit your dialer.</h2>
-          <p>We’re building in-app lead purchases powered by our data team and AI scoring models trained on real funded deals — not recycled lists dumped into a CSV.</p>
-          <ul class="leads-list">
-            <li><strong>Quality over volume</strong> — leads ranked by fit, not just phone number</li>
-            <li><strong>Buy inside Fund Pilot</strong> — one click from purchase to campaign queue</li>
-            <li><strong>Your algorithms, your rules</strong> — filter by industry, geo, and desk capacity</li>
-          </ul>
-          <a class="btn btn-primary" href="#contact">Get early access</a>
-        </div>
-        <div class="leads-visual">
-          <div class="cinema-block cinema-block--compact">
-            <div class="cinema-monitor">
-              <div class="cinema-bezel">
-                <video class="cinema-screen demo-video" muted playsinline loop preload="none" data-lazy-src="assets/demo-leads-purchase-lite.mp4?v=202605258" poster="assets/poster-leads.png">
-                </video>
+              <div class="story-step">
+                <p class="eyebrow">Merchant checks</p>
+                <h2>Know what<br />the data says.</h2>
+                <p>See deposits, negative days, NSF activity, checks, and positions before quoting.</p>
               </div>
-              <div class="cinema-stand" aria-hidden="true"></div>
+              <div class="story-step">
+                <p class="eyebrow">Funding range</p>
+                <h2>Package it.<br />Move faster.</h2>
+                <p>The analyzer keeps recommended lenders, checks, and funding range attached to the merchant.</p>
+              </div>
             </div>
-            <p class="cinema-caption">Buy scored leads → queued to your campaign</p>
+            <div class="story-visual">
+              <div class="ui-showcase">
+                <div class="story-media-stack">
+                  <figure class="story-media is-active">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/analyze-files.png?v=202605288" alt="Statement Analyzer with funding range and risk checks" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/merchant-checks.png?v=202605288" alt="Merchant check and bank activity analysis" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/analyze-files.png?v=202605288" alt="App builder and packaging from the same desktop workflow" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
           </div>
+          <div class="story-dots" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
       </div>
     </section>
 
-    <section id="demo" class="section-pad demo-theater">
-      <div class="scene-3d-bg scene-3d-bg--demo" data-scene-3d data-scene-intensity="0.85" aria-hidden="true">
-        <canvas></canvas>
+    <!-- CRM — scroll story -->
+    <section class="scroll-story scroll-story--alt" id="crm" data-nav-section="crm" data-scroll-story="crm">
+      <div class="scroll-story-track">
+        <div class="scroll-story-pin">
+          <canvas class="story-canvas" aria-hidden="true"></canvas>
+          <div class="story-layout story-layout--reverse">
+            <div class="story-copy">
+              <div class="story-step is-active">
+                <p class="eyebrow">CRM board</p>
+                <h2>Leads and email.<br />Same tab.</h2>
+                <p>Broker leads, callbacks, and recent inbox rows sit together in the desktop CRM.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Activity log</p>
+                <h2>Calls &amp; texts,<br />all attached.</h2>
+                <p>Managers can see every touch without leaving the deal workflow.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Document stack</p>
+                <h2>Every PDF.<br />Still on the deal.</h2>
+                <p>Open the file, review docs, then hit Analyze without leaving the merchant record.</p>
+              </div>
+            </div>
+            <div class="story-visual">
+              <div class="ui-showcase">
+                <div class="story-media-stack">
+                  <figure class="story-media is-active">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/crm-deal-board.png?v=202605288" alt="CRM board with fresh leads and recent email inbox" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/crm-activity.png?v=202605288" alt="Call and text activity log tied to deals" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/analyze-files.png?v=202605288" alt="Statement files attached directly to the merchant record" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="story-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
       </div>
+    </section>
+
+    <!-- Pilot — scroll story -->
+    <section class="scroll-story" id="pilot" data-nav-section="pilot" data-scroll-story="pilot">
+      <div class="scroll-story-track">
+        <div class="scroll-story-pin">
+          <canvas class="story-canvas" aria-hidden="true"></canvas>
+          <div class="story-layout">
+            <div class="story-copy">
+              <div class="story-step is-active">
+                <p class="eyebrow">Fund Pilot Bot</p>
+                <h2>Say it out loud.<br />Pilot runs the desk.</h2>
+                <p>Open Pilot from the command center — voice, text, or hands-free while you work the board.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Pilot Drop</p>
+                <h2>Drop files.<br />Instant read.</h2>
+                <p>Read spreadsheets, PDFs, or a merchant folder — Pilot ingests without a separate upload flow.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Lead Hunter</p>
+                <h2>Trace the line.<br />Find the owner cell.</h2>
+                <p>Gatekeeper blocked? Landline? One-tap prompts hunt the right number to close.</p>
+              </div>
+            </div>
+            <div class="story-visual">
+              <div class="ui-showcase">
+                <div class="story-media-stack story-media-stack--portrait">
+                  <figure class="story-media is-active">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/pilot-desk.png?v=202605288" alt="Command center with Fund Pilot Bot" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media story-media--portrait">
+                    <div class="ui-showcase-stage ui-showcase-stage--portrait">
+                      <div class="ui-showcase-frame ui-showcase-frame--portrait"><img src="assets/marketing/pilot-bot.png?v=202605288" alt="Fund Pilot Bot assistant with Lead Hunter prompts and Pilot Drop" width="380" height="582" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/lead-hunter.png?v=202605288" alt="Lead Hunter — trace owner cell from the desk" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+              <div class="chip-row" role="tablist" aria-label="Pilot screenshots">
+                <button type="button" class="demo-chip is-active" data-pilot-step="0">Pilot on desk</button>
+                <button type="button" class="demo-chip" data-pilot-step="1">Fund Pilot Bot</button>
+                <button type="button" class="demo-chip" data-pilot-step="2">Lead Hunter</button>
+              </div>
+            </div>
+          </div>
+          <div class="story-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dialer — scroll story -->
+    <section class="scroll-story scroll-story--alt" id="dialer" data-nav-section="dialer" data-scroll-story="dialer">
+      <div class="scroll-story-track">
+        <div class="scroll-story-pin">
+          <canvas class="story-canvas" aria-hidden="true"></canvas>
+          <div class="story-layout story-layout--reverse">
+            <div class="story-copy">
+              <div class="story-step is-active">
+                <p class="eyebrow">Outbound dialer</p>
+                <h2>Call 8 people<br />at once.</h2>
+                <p>The power dialer runs multiple lines, tracks status, and logs outcomes to CRM.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">One click</p>
+                <h2>Traced number →<br />dialer queue.</h2>
+                <p>Pilot finds the cell. Rep clicks call. CRM updates automatically.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">No tab-hop</p>
+                <h2>Reps never leave<br />Fund Pilot.</h2>
+                <p>Not a separate dialer website. Not a third login.</p>
+              </div>
+            </div>
+            <div class="story-visual">
+              <div class="ui-showcase">
+                <div class="story-media-stack">
+                  <figure class="story-media is-active">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/dialer-campaign.png?v=202605288" alt="Power dialer campaign calling eight merchants at once" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/crm-deal-detail.png?v=202605288" alt="Click-to-call from deal detail, dispositions logged automatically" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/pilot-desk.png?v=202605288" alt="Fund Pilot platform — dialer, CRM, analyze all in one app" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="story-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-band wrap reveal">
+      <div class="stat"><strong>100+</strong><span>MCA companies onboarded</span></div>
+      <div class="stat"><strong>52</strong><span>Desks on one broker floor</span></div>
+      <div class="stat"><strong>Custom</strong><span>Pricing by rollout</span></div>
+      <div class="stat"><strong>1</strong><span>Login for the full stack</span></div>
+    </section>
+
+    <!-- Lead Hunter / admin controls — scroll story -->
+    <section class="scroll-story" id="leads" data-nav-section="leads" data-scroll-story="leads">
+      <div class="scroll-story-track">
+        <div class="scroll-story-pin">
+          <canvas class="story-canvas" aria-hidden="true"></canvas>
+          <div class="story-layout">
+            <div class="story-copy">
+              <div class="story-step is-active">
+                <p class="eyebrow">Lead Hunter</p>
+                <h2>Trace before they<br />hit your dialer.</h2>
+                <p>Landline or cell, owner match, and quick follow-up prep from the same desk.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Admin import</p>
+                <h2>Import to a broker.<br />Or split the CSV.</h2>
+                <p>Admins choose one broker, round-robin distribution, or explicit company-wide sharing.</p>
+              </div>
+              <div class="story-step">
+                <p class="eyebrow">Ops visibility</p>
+                <h2>See who owns<br />every fresh lead.</h2>
+                <p>Broker-scoped imports stay private unless an admin intentionally shares or redistributes them.</p>
+              </div>
+            </div>
+            <div class="story-visual">
+              <div class="ui-showcase">
+                <div class="story-media-stack">
+                  <figure class="story-media is-active">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/lead-hunter.png?v=202605288" alt="Lead Hunter — find the right number before you dial" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/admin-import.png?v=202605288" alt="Admin import controls for broker assignment and CSV distribution" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                  <figure class="story-media">
+                    <div class="ui-showcase-stage">
+                      <div class="ui-showcase-frame"><img src="assets/marketing/ops-distribution.png?v=202605288" alt="Ops lead distribution and broker assignment overview" width="1360" height="828" loading="lazy" /></div>
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="story-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showreel -->
+    <section class="section-pad demo-theater" id="showreel">
       <div class="wrap">
         <div class="section-head center reveal">
           <h2>See every workflow</h2>
-          <p class="section-desc">Hyperrealistic walkthroughs — analyze, Pilot AI, dialer, leads, and a 52-desk broker floor.</p>
+          <p class="section-desc">Analyze, Pilot AI, dialer, Lead Hunter, and broker-scoped lead assignment.</p>
         </div>
-        <div class="demo-gallery reveal">
-          <div class="demo-gallery-tabs" role="tablist" aria-label="Product demos">
-            <button type="button" class="demo-tab is-active" data-gallery="showreel">Full showreel</button>
-            <button type="button" class="demo-tab" data-gallery="analyze">Analyze</button>
-            <button type="button" class="demo-tab" data-gallery="pilot">Pilot AI</button>
-            <button type="button" class="demo-tab" data-gallery="dialer">Dialer</button>
-            <button type="button" class="demo-tab" data-gallery="leads">Leads</button>
-            <button type="button" class="demo-tab" data-gallery="fleet">52-desk floor</button>
-          </div>
-          <div class="cinema-block cinema-block--wide">
-            <div class="cinema-monitor">
-              <div class="cinema-bezel">
-                <video class="cinema-screen demo-video" id="galleryMainVideo" muted playsinline loop preload="none" controls data-priority="high" data-lazy-src="assets/demo-showreel-lite.mp4?v=202605258" poster="assets/desktop-analyze-summary.png">
-                </video>
-              </div>
-              <div class="cinema-stand" aria-hidden="true"></div>
-              <div class="cinema-glow" aria-hidden="true"></div>
+        <div class="ui-showcase ui-showcase--showreel reveal">
+          <div class="ui-showcase-stage">
+            <div class="ui-showcase-frame">
+              <img src="assets/marketing/features-overview.png?v=202605288" alt="Fund Pilot — CRM, analyze, dialer, Lead Hunter, workspace, and app builder" width="1360" height="828" loading="lazy" />
             </div>
           </div>
-          <p class="demo-gallery-desc" id="galleryDesc">Full showreel — analyze, Pilot, dialer, leads, and a live broker floor in one cut.</p>
         </div>
       </div>
     </section>
 
-    <section id="pricing" class="wrap section-pad">
-      <div class="section-head center reveal">
-        <h2>Plans that stack as you grow</h2>
-        <p class="section-desc">Start with Core for analysis. Add Team for CRM. Add Platform for the dialer. Every plan includes onboarding and unlimited statements on licensed seats.</p>
-      </div>
-      <div class="billing-toggle reveal" role="group" aria-label="Billing period">
-        <button type="button" class="billing-opt is-active" data-billing="monthly" aria-pressed="true">Monthly</button>
-        <button type="button" class="billing-opt" data-billing="annual" aria-pressed="false">Annual <span class="billing-save">Save 10%</span></button>
-      </div>
-      <div class="plan-stack reveal">
-        <span>Core</span><span class="arr">→</span><span>+ CRM = Team</span><span class="arr">→</span><span>+ Dialer = Platform</span>
-      </div>
-      <div class="pricing pricing--four">
-        <div class="price-card reveal">
-          <h3 class="price-name">Core</h3>
-          <p class="price-desc">Statement analysis &amp; packaging for producers.</p>
-          <div class="price-amt"><span class="price-value" data-monthly="$449" data-annual="$404">$449</span><small class="price-unit"> / seat / mo</small></div>
-          <p class="price-billed" data-monthly="Billed monthly" data-annual="Billed annually · $4,848/seat/year">Billed monthly</p>
-          <ul class="price-features">
-            <li>Unlimited statements per seat</li>
-            <li>MCA scoring &amp; funding range</li>
-            <li>App builder &amp; follow-up planner</li>
-            <li><strong>2-week free trial</strong></li>
-          </ul>
-          <a class="btn btn-ghost" href="#contact" style="width:100%">Start trial</a>
+    <!-- Plans -->
+    <section class="section-pad" id="plans" data-nav-section="plans">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <h2>Plans that stack as you grow</h2>
+          <p class="section-desc">Every brokerage runs different call volume, seats, and Twilio usage. Book a call for pricing.</p>
         </div>
-        <div class="price-card featured reveal">
-          <div class="price-ribbon">Most popular</div>
-          <h3 class="price-name">Team</h3>
-          <p class="price-tagline">Core + CRM</p>
-          <p class="price-desc">Shared deal board for brokerages.</p>
-          <div class="price-amt"><span class="price-value" data-monthly="$2,499" data-annual="$2,249">$2,499</span><small class="price-unit"> / office / mo</small></div>
-          <p class="price-billed" data-monthly="5 seats included" data-annual="5 seats · $26,988/year">5 seats included</p>
-          <ul class="price-features">
-            <li>Everything in Core</li>
-            <li>Built-in CRM &amp; team sync</li>
-            <li>Admin console</li>
-            <li>+ seats <span class="price-extra" data-monthly="$349" data-annual="$314">$349</span>/mo</li>
-          </ul>
-          <a class="btn btn-primary" href="#contact" style="width:100%">Book a walkthrough</a>
+        <div class="pricing-callout reveal" aria-label="Pricing note">
+          <span class="pricing-badge">Call for pricing</span>
+          <p class="pricing-note">Built around your seats, broker count, and Twilio dialer volume — not a one-size monthly sticker price.</p>
         </div>
-        <div class="price-card reveal">
-          <div class="price-ribbon">Full stack</div>
-          <h3 class="price-name">Platform</h3>
-          <p class="price-tagline">Team + Dialer</p>
-          <p class="price-desc">Outbound + resell to client offices.</p>
-          <div class="price-amt"><span class="price-value" data-monthly="$3,499" data-annual="$3,149">$3,499</span><small class="price-unit"> / office / mo</small></div>
-          <p class="price-billed" data-monthly="10 seats included" data-annual="10 seats · $37,788/year">10 seats included</p>
-          <ul class="price-features">
-            <li>Everything in Team</li>
-            <li>Campaigns &amp; local caller ID</li>
-            <li>Multi-office provisioning</li>
-            <li>+ seats <span class="price-extra" data-monthly="$299" data-annual="$269">$299</span>/mo</li>
-          </ul>
-          <a class="btn btn-ghost" href="#contact" style="width:100%">Request demo</a>
-        </div>
-        <div class="price-card reveal">
-          <h3 class="price-name">Enterprise</h3>
-          <p class="price-desc">Large rollouts &amp; white-label programs.</p>
-          <div class="price-amt">Custom</div>
-          <p class="price-billed">Volume pricing · dedicated rollout</p>
-          <ul class="price-features">
-            <li>Everything in Platform</li>
-            <li>Custom integrations</li>
-            <li>Dedicated account manager</li>
-            <li>Lead marketplace priority</li>
-          </ul>
-          <a class="btn btn-ghost" href="#contact" style="width:100%">Contact sales</a>
+        <div class="plan-stack reveal"><span>Core</span><span class="arr">→</span><span>+ CRM = Team</span><span class="arr">→</span><span>+ Dialer = Platform</span></div>
+        <div class="pricing pricing--four reveal">
+          <div class="price-card">
+            <h3 class="price-name">Core</h3>
+            <p class="price-desc">Statement analysis &amp; packaging.</p>
+            <div class="price-amt">Call for pricing</div>
+            <ul class="price-features">
+              <li>Unlimited statements</li>
+              <li>MCA scoring &amp; funding range</li>
+              <li>Recommended lenders and packaging tools</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact" style="width:100%">Book a pricing call</a>
+          </div>
+          <div class="price-card featured">
+            <div class="price-ribbon">Most popular</div>
+            <h3 class="price-name">Team</h3>
+            <p class="price-tagline">Core + CRM</p>
+            <div class="price-amt">Call for pricing</div>
+            <ul class="price-features">
+              <li>Everything in Core</li>
+              <li>Built-in CRM &amp; team sync</li>
+              <li>Broker assignment and admin controls</li>
+            </ul>
+            <a class="btn btn-primary" href="#contact" style="width:100%">Book a walkthrough</a>
+          </div>
+          <div class="price-card">
+            <h3 class="price-name">Platform</h3>
+            <p class="price-tagline">Team + Dialer</p>
+            <div class="price-amt">Call for pricing</div>
+            <ul class="price-features">
+              <li>Everything in Team</li>
+              <li>Dialer campaigns &amp; local caller ID</li>
+              <li>Twilio usage and call volume priced to fit</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact" style="width:100%">Request demo</a>
+          </div>
+          <div class="price-card">
+            <h3 class="price-name">Enterprise</h3>
+            <p class="price-desc">Large rollouts &amp; white-label.</p>
+            <div class="price-amt">Call for pricing</div>
+            <ul class="price-features">
+              <li>Everything in Platform</li>
+              <li>Dedicated account manager</li>
+              <li>Custom rollout, training, and support</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact" style="width:100%">Contact sales</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="wrap section-pad">
-      <div class="section-head center reveal">
-        <h2>Questions owners ask</h2>
-      </div>
-      <div class="faq reveal">
-        <details class="faq-item"><summary>Is this a browser app or a desktop app?</summary><p>Fund Pilot installs on Windows like software your team already uses. CRM and dialer open inside the same window — one login, one brand.</p></details>
-        <details class="faq-item"><summary>Can we switch from our current CRM and dialer?</summary><p>Yes. That’s our most common onboarding. We import your book, configure campaigns, and train every seat live on a call.</p></details>
-        <details class="faq-item"><summary>Do you help brand-new MCA companies?</summary><p>Absolutely. We set up your company, users, and playbooks so you launch with a professional stack from day one.</p></details>
-        <details class="faq-item"><summary>What about leads?</summary><p>Lead purchases inside Fund Pilot are rolling out now. Join the waitlist on a sales call for early access and pricing.</p></details>
-        <details class="faq-item"><summary>Is there a free trial?</summary><p>Core includes a <strong>two-week trial</strong> on your real statements — no credit card to evaluate.</p></details>
-      </div>
-    </section>
-
-    <section id="contact" class="wrap section-pad">
-      <div class="contact-grid reveal">
+    <!-- Contact -->
+    <section class="section-pad" id="contact">
+      <div class="wrap contact-grid reveal">
         <div class="contact-copy">
-          <h2>Let’s talk on a real call.</h2>
-          <p>Tell us if you’re switching stacks or launching fresh. We’ll show Fund Pilot on your deal shape — not a canned slide deck.</p>
-          <p class="contact-meta"><strong>Best next step:</strong> book 30 minutes with our team.<br /><strong>Email:</strong> <span id="contactEmailDisplay"></span></p>
+          <h2>Let's talk on a real call.</h2>
+          <p>Switching stacks or launching fresh — we'll show Fund Pilot on your deal shape.</p>
+          <p class="contact-meta"><strong>Email:</strong> <span id="contactEmail"></span></p>
         </div>
         <div class="contact-card">
           <form class="contact-form" id="contactForm">
             <label class="form-field"><span class="form-label">Name</span><input type="text" name="name" required autocomplete="name" /></label>
             <label class="form-field"><span class="form-label">Company</span><input type="text" name="company" required autocomplete="organization" /></label>
             <label class="form-field"><span class="form-label">Work email</span><input type="email" name="email" required autocomplete="email" /></label>
-            <label class="form-field"><span class="form-label">Switching or launching new?</span>
+            <label class="form-field"><span class="form-label">Switching or launching?</span>
               <select name="intent" class="form-select">
                 <option value="switch">Switching our current shop</option>
                 <option value="launch">Launching a new MCA company</option>
                 <option value="both">Not sure yet</option>
               </select>
             </label>
-            <label class="form-field"><span class="form-label">Anything else?</span><textarea name="message" rows="3" placeholder="Desk size, monthly volume, current tools…"></textarea></label>
+            <label class="form-field"><span class="form-label">Message</span><textarea name="message" rows="3"></textarea></label>
             <button type="submit" class="btn btn-primary" style="width:100%">Send message</button>
           </form>
         </div>
@@ -412,23 +512,7 @@
     <div class="wrap footer-grid">
       <div class="footer-brand">
         <a class="logo logo--footer" href="#top"><span class="logo-mark">F</span> Fund Pilot</a>
-        <p class="footer-tag">Plug-and-play MCA platform — analyze, CRM, dialer, leads.</p>
-      </div>
-      <div>
-        <h4 class="footer-heading">Product</h4>
-        <ul class="footer-links">
-          <li><a href="#platform">Platform</a></li>
-          <li><a href="#pilot">Pilot</a></li>
-          <li><a href="#leads">Leads</a></li>
-          <li><a href="#pricing">Plans</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="footer-heading">Company</h4>
-        <ul class="footer-links">
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#paths">Get started</a></li>
-        </ul>
+        <p class="footer-tag">Plug-and-play MCA platform.</p>
       </div>
       <div>
         <h4 class="footer-heading">Legal</h4>
@@ -438,15 +522,12 @@
         </ul>
       </div>
     </div>
-    <div class="wrap footer-bottom">
-      <span>© <span id="y"></span> Fund Pilot. All rights reserved.</span>
-    </div>
+    <div class="wrap footer-bottom"><span>© <span id="y"></span> Fund Pilot</span></div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
   <script src="js/hero-3d.js?v=202605258" defer></script>
-  <script src="js/scene-showcase.js?v=202605258" defer></script>
-  <script src="js/device-3d.js?v=202605260" defer></script>
-  <script src="js/main.js?v=202605258" defer></script>
+  <script src="js/scroll-story.js?v=11" defer></script>
+  <script src="js/apple-scroll.js?v=6" defer></script>
 </body>
 </html>

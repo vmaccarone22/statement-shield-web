@@ -1,39 +1,52 @@
-﻿# Fund Pilot marketing site
+# Fund Pilot — cinematic scroll site
 
-Static marketing site for **Fund Pilot** — MCA analyzer, native CRM, Twilio dialer.
+Apple-style **scroll motion** on **real Fund Pilot UI** — demo videos and screenshots from the actual desktop/mobile app, not placeholder 3D props.
 
-**Source of truth:** `FundPilot/website/` in the private [fundpilot](https://github.com/vmaccarone22/fundpilot) monorepo.
+The original 3D marketing site lives in `../website/`.
 
-**Public deploy repo (legacy name):** [statement-shield-web](https://github.com/vmaccarone22/statement-shield-web) — sync from this folder before pushing live.
+## Preview on VPS (partner link)
 
-## Local preview
-
-```powershell
-cd website
-py -3 serve_local.py
-# or: .\Serve-Local.ps1
-```
-
-Opens at http://127.0.0.1:8080
-
-## What’s on the site (2026-05-24)
-
-- Native in-exe CRM, deal board, merchants
-- Fund Pilot Dialer (Twilio, campaigns, Ops admin)
-- Four pricing tiers: Core, Core + CRM, CRM + Dialer, Enterprise
-- SEO: meta keywords, Open Graph, Twitter cards, JSON-LD SoftwareApplication + Organization
-- FAQ entries for CRM and dialer
-
-## Before public launch
-
-1. Replace `fundpilot.example` in `index.html`, `sitemap.xml`, `robots.txt`
-2. Set contact email in `js/main.js` (`CONTACT_EMAIL`)
-3. Run `Build-Site.ps1` to verify assets
-4. Sync to `statement-shield-web` and enable GitHub Pages (or Netlify/Cloudflare)
-
-## Sync to statement-shield-web
+After changes, publish to the cloud:
 
 ```powershell
-# From FundPilot repo root — copy site files to a clone of statement-shield-web, then commit there
-powershell -ExecutionPolicy Bypass -File scripts\Sync-Website-To-GitHub.ps1
+# From FundPilot repo root — requires FP_VPS_PASSWORD
+py -3 scripts\publish_website_apple.py
 ```
+
+Partner URL:
+
+- **http://172.86.108.65/preview/**
+- **https://crm.fundpilot.xyz/preview/**
+
+Local dev remains **http://127.0.0.1:8081** via `Serve-Local.ps1`.
+
+## Preview locally
+
+```powershell
+.\Serve-Local.ps1
+```
+
+Open **http://127.0.0.1:8081**
+
+## What you see
+
+- **Hero:** gold Saturn ambient 3D + laptop/phone device frames playing real analyze demo
+- **Scroll sections:** as you scroll, copy steps through and the **real screenshot or demo video** crossfades (analyze, CRM, Pilot, dialer, leads)
+- **3D is atmosphere only** — not used to represent product features
+
+## Media source
+
+Demo MP4s and PNGs come from `../website/assets/` (junction). Re-record or replace there, then refresh the site.
+
+To add a new scroll step: duplicate a `<figure class="story-media">` in `index.html` and match the step count in `.story-step`.
+
+## Structure
+
+| File | Purpose |
+|------|---------|
+| `index.html` | Scroll stories with real app media per step |
+| `css/apple.css` | Fund Pilot brand + scroll layout |
+| `js/scroll-story.js` | Scroll-pinned copy + screenshot/video swap |
+| `js/hero-3d.js` | Ambient hero rings (not product) |
+| `js/device-3d.js` | Device tilt + parallax |
+| `js/apple-scroll.js` | Nav, lazy video, forms |
